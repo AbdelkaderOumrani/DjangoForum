@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% load static %} {% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+{% endblock %} {% block content %}
+
+<div id="login">
+  <div class="login-card">
+    <div class="card-title">
+      <h1>Sign In</h1>
+    </div>
+
+    <div class="content">
+      <!--ALERTS-->
+      {% include 'partials/_alerts.html' %}
+      <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input
+          id="username"
+          type="username"
+          name="username"
+          title="username"
+          placeholder="username"
+          required
+          autofocus
+        />
+        <input
+          id="password"
+          type="password"
+          name="password"
+          title="password"
+          placeholder="Password"
+          required
+        />
+
+        <div class="level options">
+          <div class="checkbox level-left">
+            <input type="checkbox" id="checkbox" class="regular-checkbox" />
+            <label for="checkbox"></label>
+            <span>Remember me</span>
+          </div>
+
+          <div class="level-right"><a href="#">Forgot Password?</a></div>
+        </div>
+
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

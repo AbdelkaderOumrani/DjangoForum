@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Landing Page</title>
+    <link
+      rel="shortcut icon"
+      href="../images/fav_icon.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
+      rel="stylesheet"
+    />
+    <!-- Bulma Version 0.7.5-->
+    <link
+      rel="stylesheet"
+      href="{% static 'bulma-0.7.5/css/bulma.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/landing.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="hero is-light is-fullheight">
+      <div>
+        <div class="hero-head">
+          <!--Navbar Start-->
+          <nav class="navbar ">
+            <div class="container">
+              <!--
+              <div class="navbar-brand">
+                <a class="navbar-item" href="../">
+                  <img
+                    src="http://bulma.io/images/bulma-type-white.png"
+                    alt="Logo"
+                  />
+                </a>
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+              </div>
+              <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                  <span class="navbar-item">
+                    <a
+                      class="button is-white is-outlined is-fullwidth"
+                      href="#"
+                    >
+                      <span class="icon">
+                        <i class="fa fa-home"></i>
+                      </span>
+                      <span>Home</span>
+                    </a>
+                  </span>
+                  <span class="navbar-item">
+                    <a class="button is-white is-outlined" href="#">
+                      <span class="icon">
+                        <i class="fa fa-superpowers"></i>
+                      </span>
+                      <span>Examples</span>
+                    </a>
+                  </span>
+                  <span class="navbar-item">
+                    <a class="button is-white is-outlined" href="#">
+                      <span class="icon">
+                        <i class="fa fa-book"></i>
+                      </span>
+                      <span>Documentation</span>
+                    </a>
+                  </span>
+                  <span class="navbar-item">
+                    <a
+                      class="button is-white is-outlined"
+                      href="https://github.com/dansup/bulma-templates/blob/master/templates/landing.html"
+                    >
+                      <span class="icon">
+                        <i class="fa fa-github"></i>
+                      </span>
+                      <span>View Source</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              
+          Navbar END-->
+            </div>
+          </nav>
+        </div>
+
+        <div class="hero-body">
+          <div class="container has-text-centered ">
+            <div class="column is-6 is-offset-3">
+              <h3 class="title is-4">
+                Hello,World!
+              </h3>
+              <h1 class="title is-1">Welcome to forum</h1>
+              <div class="buttons are-large column is-10 is-offset-1">
+                <a
+                  href="{% url 'login' %}"
+                  class="button is-primary is-outlined"
+                >
+                  <span class="icon"> <i class="fas fa-sign-in-alt"></i> </span>
+                  <span>Sign In</span>
+                </a>
+                <a
+                  href="{% url 'register' %}"
+                  class="button is-danger is-outlined"
+                >
+                  <span class="icon"> <i class="fas fa-user-plus"></i> </span>
+                  <span>Sign Up</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div></div>
+    </div>
+
+    <script
+      async
+      type="text/javascript"
+      src="{% static 'bulma-0.7.5/js/bulma.js' %}"
+    ></script>
+  </body>
+</html>
