@@ -1,0 +1,152 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <!-- Sidebar -->
+  {% include 'partials/_sidebar.html' %}
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      {% include 'partials/_navbar.html' %}
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+
+      <div class="container-fluid">
+
+
+        <!-- Page Heading -->
+        <style type="text/css" >
+          .my-paragraphe{
+            border-radius: 10px  ; }
+            .nav-tabs .nav-link {
+              border: none;
+            }
+            .edit-profil{
+              color: #ffff ;
+              }
+            .edit-profil:hover{
+              text-decoration: none;
+            }  
+                                            
+        </style>
+       
+
+        <!-- Content Row -->
+
+        <div class="row">
+            <!-- Column -->
+                  <div class="col-lg-4 col-xlg-3 col-md-5">
+                      <div class="card">
+                          <div class="card-block">
+                              <center class="m-t-90">
+                              <br/> <img src="img/22.jpg" class="img-profile rounded-circle" width="150" height="150" />
+                                  <h4 class="card-title m-t-10"></h4>
+                                  <h6 class="card-subtitle">{{ user.username }}</h6>
+                                  <div class="row text-center justify-content-md-center">
+                                    <div class="col-4"><a href="javascript:void(0)" class="link"><i class="fas fa-fw fa-table"></i> <font class="font-medium">254</font></a></div>
+                                      
+                                      <div class="col-4"><a href="javascript:void(0)" class="link"><i class="fas fa-fw fa-table""></i> <font class="font-medium">65</font></a></div>
+                                  </div>
+                              </center>
+                          </div>
+                      </div>
+                      <br/>
+                      <center>
+                      <div class="form-group">
+                            <div class="col-sm-12" >
+                                  <button class="btn btn-info">
+                                    <a class ="edit-profil" href="{% url 'edit_profil' %} ">Edit Profil</a>
+                                  </button>
+                            </div>
+                      </div>
+                      </center>
+                  </div>
+
+
+          <!-- Area Chart -->
+          <div class="col-xl-8 col-lg-7 ">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+             
+              <!-- Card Body -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item ">
+                        <a class="nav-link active my-tab" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Info</a>
+                    </li>
+                    <li class="nav-item my-tab">
+                                  <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                     </li>
+                                     
+                  </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="col-lg-12 col-xlg-9 col-md-4 tab-pane fade show active " id="info" role="tabpanel" aria-labelledby="info-tab" >
+                      <div class="card border-0">
+                          <div class="card-block">
+                              <form class="form-horizontal form-material col-md-12">
+                                  <div class="form-group">
+                                    <br/>
+                                      <label class="col-md-12">{{ user.get_full_name }}</label>
+                                      
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="example-email" class="col-md-12">{{ user.email }}</label>
+                                     
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-md-12">Bio</label>
+                                    
+                                      <p class="col-md-12 my-paragraphe bg-gray-400" > Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                                  </div>
+                                  
+                                
+                                
+                              </form>
+                          </div>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <h1> Posts</h1>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        
+        </div>
+
+        <!-- Content Row -->
+        
+
+      </div>
+      <!-- /.container-fluid -->
+
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    {% include 'partials/_footer.html' %}
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+{% include 'partials/_logout_modal.html'%} {% endblock %}

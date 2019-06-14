@@ -68,3 +68,8 @@ def logout(request):
 def edit_profil(request):
     if request.user.is_authenticated:
         return render(request, 'accounts/edit_profil.html')
+
+
+def show_profil(request):
+    if request.user.is_authenticated:
+        return render(request, 'accounts/show_profil.html')

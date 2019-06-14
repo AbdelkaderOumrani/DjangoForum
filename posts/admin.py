@@ -9,7 +9,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class PostAdmin(admin.ModelAdmin):
     exclude = ('slug',)
-    list_display = ('title', 'category', 'status', 'created', 'updated')
+    list_display = ('title', 'category', 'status',
+                    'created', 'updated', 'author')
     list_filter = ('status', 'category')
     search_fields = ('title', 'body')
     sortable_by = ('created', 'updated', 'title', 'category')
