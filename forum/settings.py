@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'import_export',
+    'posts.apps.PostsConfig',
     'pages.apps.PagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +135,6 @@ STATICFILES_DIRS = [
 
 # Messages
 MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
+    messages.ERROR: 'warning',
     messages.SUCCESS: 'success',
 }

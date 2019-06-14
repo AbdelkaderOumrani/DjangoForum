@@ -1,0 +1,119 @@
+{% extends 'base.html' %} {% load static %} {% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+<script src="https://kit.fontawesome.com/ba00722aa7.js"></script>
+{% endblock %} {% block content %}
+
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body  -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                </div>
+                {% include 'partials/_alerts.html' %}
+                <form class="user" action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input
+                        type="text"
+                        name="first_name"
+                        class="form-control form-control-user"
+                        id="exampleFirstName"
+                        placeholder="First Name"
+                      />
+                    </div>
+                    <div class="col-sm-6">
+                      <input
+                        type="text"
+                        name="last_name"
+                        class="form-control form-control-user"
+                        id="exampleLastName"
+                        placeholder="Last Name"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-4 mb-3 mb-sm-0">
+                      <input
+                        type="text"
+                        name="username"
+                        class="form-control form-control-user"
+                        id="exampleUsername"
+                        placeholder="Username"
+                        required
+                      />
+                    </div>
+
+                    <div class="col-sm-8">
+                      <input
+                        name="email"                        
+                        type="email"
+                        class="form-control form-control-user "
+                        id="exampleInputEmail"
+                        placeholder="Email Address"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input
+                        type="password"
+                        name="password"
+                        class="form-control form-control-user"
+                        id="exampleInputPassword"
+                        placeholder="Password"
+                        required
+                      />
+                    </div>
+                    <div class="col-sm-6">
+                      <input
+                        type="password"
+                        name="password2"
+                        class="form-control form-control-user"
+                        id="exampleRepeatPassword"
+                        placeholder="Repeat Password"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <button class="btn btn-success btn-user btn-block">
+                    Register Account
+                  </button>
+                </form>
+                <hr />
+                <div class="text-center">
+                  <a class="small" href="forgot-password.html"
+                    >Forgot Password?</a
+                  >
+                </div>
+                <div class="text-center">
+                  <a class="small" href="{% url 'login' %}"
+                    >Already have an account? Login!</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+    background-image: url("https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/55963123_1810478952386751_755741590705668096_n.jpg?_nc_cat=110&_nc_ht=scontent-mxp1-1.xx&oh=f9ba21993a8fa033eea36e926e7ba3b4&oe=5D0D0A7F");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+
+{% endblock %}

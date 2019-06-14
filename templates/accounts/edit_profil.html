@@ -1,0 +1,145 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <!-- Sidebar -->
+  {% include 'partials/_sidebar.html' %}
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      {% include 'partials/_navbar.html' %}
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+
+      <div class="container-fluid">
+        <!-- Page Heading -->
+
+        <!-- Content Row -->
+
+        <div class="row">
+          <!-- Column -->
+          <div class="col-lg-4 col-xlg-3 col-md-5">
+            <div class="card">
+              <div class="card-block">
+                <center class="m-t-90">
+                  <br />
+                  <img
+                    src="img/22.jpg"
+                    class="img-profile rounded-circle"
+                    width="150"
+                    height="150"
+                  />
+                  <h4 class="card-title m-t-10"></h4>
+                  <h6 class="card-subtitle">{{ user.get_full_name }}</h6>
+                  <div class="row text-center justify-content-md-center">
+                    <div class="col-4">
+                      <a href="javascript:void(0)" class="link"
+                        ><i class="icon-picture"></i>
+                        <font class="font-medium">Edit picture</font></a
+                      >
+                    </div>
+                  </div>
+                </center>
+              </div>
+            </div>
+          </div>
+
+          <!-- Area Chart -->
+          <div class="col-xl-8 col-lg-7 ">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+
+              <!-- Card Body -->
+              <div class="col-lg-12 col-xlg-9 col-md-4 ">
+                <div class="card border-0">
+                  <div class="card-block">
+                    <form class="form-horizontal form-material col-md-12">
+                      <div class="form-group">
+                        <br />
+                        <label class="col-md-12">User Name</label>
+                        <div class="col-md-12">
+                          <input
+                            type="text"
+                            value="{{ user.username }} "
+                            class="form-control form-control-line border-0 bg-light"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="example-email" class="col-md-12"
+                          >Email</label
+                        >
+                        <div class="col-md-12">
+                          <input
+                            type="email"
+                            value="{{ user.email }}"
+                            class="form-control form-control-line border-0 bg-light"
+                            name="example-email"
+                            id="example-email "
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-12">Password</label>
+                        <div class="col-md-12">
+                          <input
+                            type="password"
+                            placeholder="password"
+                            class="form-control form-control-line border-0 bg-light"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-12">Phone No</label>
+                        <div class="col-md-12">
+                          <input
+                            type="text"
+                            placeholder="123 456 7890"
+                            class="form-control form-control-line border-0 bg-light"
+                          />
+                        </div>
+                      </div>
+
+                      <center>
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <button class="btn btn-success">
+                              Update Profile
+                            </button>
+                          </div>
+                        </div>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Row -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    {% include 'partials/_footer.html' %}
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+{% include 'partials/_logout_modal.html'%} {% endblock %}

@@ -1,9 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from posts.models import Category
+from django.db.models import Count
 
 
 def index(request):
-    return render(request, 'pages/index.html')
+    return redirect('categories')
 
 
-def dashboard(request):
-    return render(request, 'pages/dashboard.html')
+def categories(request):
+    categories = Category.objects.annotate(nb_posts=Count('post'))
+    context = {
+        'categories': categories
+    }
+    return render(request, 'pages/categories.html', context)
