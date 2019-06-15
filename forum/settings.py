@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'import_export',
     'posts.apps.PostsConfig',
     'pages.apps.PagesConfig',
     'django.contrib.admin',
