@@ -29,8 +29,10 @@
   </head>
 
   <body id="page-top">
-    {% block content %}
-    {% endblock  %}
+    {% block content %} {% endblock %}
+
+    <!-- Logout Modal-->
+    {% include 'partials/_logout_modal.html'%}
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -40,5 +42,10 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <script>
+      $(".dropdown-item").click(function() {
+        $("#dropdown-btn").text($(this).text());
+      });
+    </script>
   </body>
 </html>
