@@ -22,9 +22,9 @@ def new_post(request):
         if request.method == 'POST':
             title = request.POST['title']
             body = request.POST['post_body']
-            category = request.POST['post_category']
+            #category = request.POST['post_category']
             author = request.user
-            post = Post(title=title, body=body, category=category , author=author)
+            post = Post(title=title, body=body,  author=author)
             post.save()
             return redirect('categories')
         return render(request, 'posts/new_post.html', context)
