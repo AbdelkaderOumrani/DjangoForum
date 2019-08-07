@@ -17,9 +17,9 @@ class Category(models.Model):
         ('danger', 'Red')
     )
 
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, unique=True)
     description = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200,)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     visited = models.IntegerField(default=0)
@@ -44,7 +44,9 @@ class Post(models.Model):
     body = models.TextField()
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True)
-    slug = models.SlugField(max_length=200, unique=True)
+    cover = models.ImageField(upload_to='img/avatars',
+                              default='img/avatars/empty.png')
+    slug = models.SlugField(max_length=200,)
     status = models.BooleanField(default=False, choices=STATUS_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

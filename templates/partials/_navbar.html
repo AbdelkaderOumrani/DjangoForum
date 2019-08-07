@@ -1,9 +1,3 @@
-<style>
-  .btn.btn-primary {
-    background-color: #000000;
-    border-color: #000000;
-  }
-</style>
 <nav
   class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
 >
@@ -211,7 +205,10 @@
         <span class="mr-2 d-none d-lg-inline text-gray-600 small">
           {{ user.username }}
         </span>
-        <img class="img-profile rounded-circle" src="img/profil.jpg" />
+        <img
+          class="img-profile rounded-circle"
+          src="{{ user.profile.avatar.url }}"
+        />
       </a>
       <!-- Dropdown - User Information -->
       <div

@@ -4,7 +4,7 @@ from .models import Category, Post, Comment
 
 class CategoryAdmin(admin.ModelAdmin):
     exclude = ('slug',)
-    list_display = ('title', 'description', 'created', 'updated')
+    list_display = ('title', 'description', 'created', 'updated', 'slug')
 
 
 class PostAdmin(admin.ModelAdmin):

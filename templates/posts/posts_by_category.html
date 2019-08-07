@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% load humanize %} {% block content %}
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <!-- Sidebar -->
+  {% include 'partials/_sidebar.html' %}
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      {% include 'partials/_navbar.html' %}
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">All Posts</h1>
+        <div class="row">
+          {% for post in posts %}
+          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div class="card card-small card-post card-post--1">
+              <div
+                class="card-post__image"
+                style="background-image: url('{{ post.cover.url }}');"
+              >
+                <a
+                  href="#"
+                  class="card-post__category badge badge-pill badge-{{
+                    post.category.color
+                  }}"
+                  >{{ post.category }}</a
+                >
+                <div class="card-post__author d-flex">
+                  <a
+                    href="#"
+                    class="card-post__author-avatar card-post__author-avatar--small"
+                    style="background-image: url('{{
+                      post.author.profile.avatar.url
+                    }}');"
+                    >Written by Anna Kunis</a
+                  >
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">
+                  <a class="text-fiord-blue" href="#">{{ post.title }}</a>
+                </h5>
+                <p class="card-text d-inline-block mb-3">
+                  {{ post.body | truncatechars: 150 }}
+                </p>
+                <span class="text-muted">{{ post.created | naturalday }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      {% include 'partials/_footer.html' %}
+      <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Categories Modal-->
+  {% include 'partials/_categories_modal.html'%} {% endblock %}
+</div>

@@ -19,131 +19,100 @@
         <!-- Page Heading -->
 
         <!-- Content Row -->
-
         <div class="row">
-          <!-- Column -->
-          <div class="col-lg-4 col-xlg-3 col-md-5">
-            <div class="card">
-              <div class="card-block">
-                <center class="m-t-90">
-                  <br />
-                  <img
-                    src="{{ user.profile.avatar.url }}"
-                    class="img-profile rounded-circle"
-                    width="150"
-                    height="150"
-                  />
-                  <h4 class="card-title m-t-10"></h4>
-                  <h6 class="card-subtitle">{{ user.get_full_name }}</h6>
-                  <div class="row text-center justify-content-md-center">
-                    <div class="col-4">
-                      <a href="javascript:void(0)" class="link"
-                        ><i class="icon-picture"></i>
-                        <font class="font-medium">Edit picture</font></a
-                      >
-                    </div>
+            <div class="col-lg-4">
+              <div class="card card-small mb-4 pt-3">
+                <div class="card-header border-bottom text-center">
+                  <div class="mb-3 mx-auto">
+                    <img class="rounded-circle" src="{{ user.profile.avatar.url }}" alt="User Avatar" width="110"> 
                   </div>
-                </center>
-              </div>
-            </div>
-          </div>
-
-          <!-- Area Chart -->
-          <div class="col-xl-8 col-lg-7 ">
-            <div class="card shadow mb-4">
-              <!-- Card Header - Dropdown -->
-
-              <!-- Card Body -->
-              <div class="col-lg-12 col-xlg-9 col-md-4 ">
-                <div class="card border-0">
-                  <div class="card-block">
-                    <form class="form-horizontal form-material col-md-12">
-                      <div class="form-group">
-                        <br />
-                        <label class="col-md-12">User Name</label>
-                        <div class="col-md-12">
-                          <input
-                            type="text"
-                            value="{{ user.username }} "
-                            class="form-control form-control-line border-0 bg-light"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="example-email" class="col-md-12"
-                          >Email</label
-                        >
-                        <div class="col-md-12">
-                          <input
-                            type="email"
-                            value="{{ user.email }}"
-                            class="form-control form-control-line border-0 bg-light"
-                            name="example-email"
-                            id="example-email "
-                          />
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-md-12">Old Password</label>
-                        <div class="col-md-12">
-                          <input
-                            type="password"
-                            placeholder="password"
-                            class="form-control form-control-line border-0 bg-light"
-                          />
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-md-6">
-                          <label class="col-md-12">New Password</label>
-                          <div class="col-md-12">
-                            <input
-                              type="password"
-                              placeholder="password"
-                              class="form-control form-control-line border-0 bg-light"
-                            />
-                          </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                          <label class="col-md-12">Confirm Password</label>
-                          <div class="col-md-12">
-                            <input
-                              type="password"
-                              placeholder="password"
-                              class="form-control form-control-line border-0 bg-light"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-md-12">Bio</label>
-                        <div class="col-md-12">
-                          <textarea
-                            type="text"
-                            placeholder="describe yourself"
-                            class="form-control form-control-line border-0 bg-light"
-                          ></textarea>
-                        </div>
-                      </div>
-
-                      <center>
-                        <div class="form-group">
-                          <div class="col-sm-12">
-                            <button class="btn btn-success">
-                              Update Profile
-                            </button>
-                          </div>
-                        </div>
-                      </center>
-                    </form>
-                  </div>
+                  <h4 class="mb-0">{{ user.get_full_name }}</h4>
+                  <span class="text-muted d-block mb-2">@{{user.username}}</span>
+                  <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">
+                      <i class="fas fa-fw fa-tachometer-alt"></i>Follow</button>
                 </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item px-4">
+                    <div class="progress-wrapper">
+                      <strong class="text-muted d-block mb-2">Workload</strong>
+                      <div class="progress progress-sm">
+                        <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="74" 
+                        aria-valuemin="0" aria-valuemax="100" style="width: 74%;">
+                          <span class="progress-value">74%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item p-4">
+                    <strong class="text-muted d-block mb-2">Description</strong>
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="card card-small mb-4">
+                <div class="card-header border-bottom">
+                  <h6 class="m-0">Account Details</h6>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item p-3">
+                    <div class="row">
+                      <div class="col">
+                        <form>
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="feFirstName">First Name</label>
+                              <input type="text" class="form-control" id="feFirstName" placeholder="First Name" 
+                              value="{{user.first_name}}"> </div>
+                            <div class="form-group col-md-6">
+                              <label for="feLastName">Last Name</label>
+                              <input type="text" class="form-control" id="feLastName" placeholder="Last Name" 
+                              value="{{user.last_name}}"> </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="feEmailAddress">Email</label>
+                              <input type="email" class="form-control" id="feEmailAddress" placeholder="Email" 
+                              value="{{ user.email }}"> </div>
+                            <div class="form-group col-md-6">
+                              <label for="fePassword">Password</label>
+                              <input type="password" class="form-control" id="fePassword" 
+                              value="********************" disabled> </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="feInputAddress">Address</label>
+                            <input type="text" class="form-control" id="feInputAddress" placeholder="1234 Main St"> </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="feInputCity">City</label>
+                              <input type="text" class="form-control" id="feInputCity"> </div>
+                            <div class="form-group col-md-4">
+                              <label for="feInputState">State</label>
+                              <select id="feInputState" class="form-control">
+                                <option selected="">Choose...</option>
+                                <option>...</option>
+                              </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                              <label for="inputZip">Zip</label>
+                              <input type="text" class="form-control" id="inputZip"> </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-12">
+                              <label for="feDescription">Description</label>
+                              <textarea class="form-control" name="feDescription" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea>
+                            </div>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Update Account</button>
+                        </form>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-        </div>
-
         <!-- Content Row -->
       </div>
       <!-- /.container-fluid -->

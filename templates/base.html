@@ -26,6 +26,15 @@
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+
+    {% url 'new_post' as new_post %} {% if request.path == new_post %}
+    <!--Quilljs Text editor-->
+    <link
+      href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+      rel="stylesheet"
+    />
+    {% endif %}
   </head>
 
   <body id="page-top">
@@ -42,10 +51,25 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    {% if request.path == new_post %}
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <!-- Initialize Quill editor -->
     <script>
-      $(".dropdown-item").click(function() {
-        $("#dropdown-btn").text($(this).text());
+      var ColorClass = Quill.import("attributors/class/color");
+      var SizeStyle = Quill.import("attributors/style/size");
+      Quill.register(ColorClass, true);
+      Quill.register(SizeStyle, true);
+
+      // Initialize as you would normally
+      var quill = new Quill("#editor", {
+        modules: {
+          toolbar: true
+        },
+        theme: "snow"
       });
     </script>
+    {% endif %}
   </body>
 </html>

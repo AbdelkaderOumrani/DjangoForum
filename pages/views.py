@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 def index(request):
-    return redirect('categories')
+    return redirect('recent_posts')
 
 
 def categories(request):

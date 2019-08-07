@@ -1,0 +1,271 @@
+/*Cards*/
+.card {
+  background-color: #fff;
+  border: none;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1),
+    0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1),
+    0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12),
+    0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+}
+
+.card > .list-group:first-child .list-group-item:first-child {
+  border-top-left-radius: 0.625rem;
+  border-top-right-radius: 0.625rem;
+}
+
+.card > .list-group:last-child .list-group-item:last-child {
+  border-bottom-right-radius: 0.625rem;
+  border-bottom-left-radius: 0.625rem;
+}
+
+.card .list-group-item {
+  padding: 0.8125rem 1.875rem;
+}
+
+.card .card-text {
+  margin-bottom: 1.5625rem;
+}
+
+.card a:hover {
+  text-decoration: none;
+}
+
+.card-small {
+  box-shadow: 0 2px 0 rgba(90, 97, 105, 0.11), 0 4px 8px rgba(90, 97, 105, 0.12),
+    0 10px 10px rgba(90, 97, 105, 0.06), 0 7px 70px rgba(90, 97, 105, 0.1);
+}
+
+.card-small .card-body,
+.card-small .card-footer,
+.card-small .card-header {
+  padding: 1rem 1rem;
+}
+
+.card-body {
+  padding: 1.875rem;
+}
+
+.card-body > p:last-child {
+  margin-bottom: 0;
+}
+
+.card-title {
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.card-subtitle {
+  margin-top: -1.09375rem;
+}
+
+.card-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.card-link + .card-link {
+  margin-left: 1.875rem;
+}
+
+.card-header {
+  padding: 1.09375rem 1.875rem;
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.card-header:first-child {
+  border-radius: 0.625rem 0.625rem 0 0;
+}
+
+.card-footer {
+  padding: 1.09375rem 1.875rem;
+  background-color: #fff;
+  border-top: none;
+}
+
+.card-footer:last-child {
+  border-radius: 0 0 0.625rem 0.625rem;
+}
+
+.card-header-tabs {
+  margin-bottom: -1rem;
+  border-bottom: 0;
+}
+
+.card-header-tabs .nav-link,
+.card-header-tabs .nav-link:hover {
+  border-bottom: transparent;
+}
+
+.card-header-pills {
+  margin-right: -0.9375rem;
+  margin-left: -0.9375rem;
+}
+
+.card-header-pills:hover {
+  background: 0 0;
+}
+
+.card-img-overlay {
+  padding: 1.875rem 2.1875rem;
+  background: rgba(90, 97, 105, 0.5);
+  border-radius: 0.625rem;
+}
+
+.card-img-overlay .card-title {
+  color: #fff;
+}
+
+.card-img {
+  border-radius: 0.625rem;
+}
+
+.card-img-top {
+  border-top-left-radius: 0.625rem;
+  border-top-right-radius: 0.625rem;
+}
+
+.card-img-bottom {
+  border-bottom-right-radius: 0.625rem;
+  border-bottom-left-radius: 0.625rem;
+}
+
+.card-deck .card {
+  margin-bottom: 0.9375rem;
+}
+
+.card-group > .card {
+  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1),
+    0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1),
+    0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12),
+    0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+}
+
+.card-group > .card:last-child .card-body,
+.card-group > .card:last-child .card-footer {
+  border-right: none;
+}
+
+.card-group .card-body,
+.card-group .card-footer {
+  border-right: 1px solid #e7e9ea;
+}
+
+.card-columns .card {
+  margin-bottom: 2.1875rem;
+}
+
+/* Recent Posts Cards*/
+.card-post .card-body {
+  padding: 1.5625rem 1.5625rem;
+}
+
+.card-post .card-footer,
+.card-post .card-header {
+  padding-left: 1.5625rem;
+  padding-right: 1.5625rem;
+}
+
+.card-post__image {
+  position: relative;
+  min-height: 10.3125rem;
+  border-top-left-radius: 0.625rem;
+  border-top-right-radius: 0.625rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-post__author-avatar {
+  width: 2.8125rem;
+  height: 2.8125rem;
+  box-shadow: 0 0 0 0.125rem #fff, 0 0.1875rem 0.4375rem rgba(90, 97, 105, 0.5);
+  display: block;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  text-indent: -9999px;
+}
+
+.card-post__author-avatar--small {
+  width: 2.1875rem;
+  height: 2.1875rem;
+}
+
+.card-post__author-name {
+  font-weight: 500;
+}
+
+.card-post--aside {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row;
+  flex-flow: row;
+}
+
+.card-post--aside .card-post__image {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0.625rem;
+  border-bottom-left-radius: 0.625rem;
+  min-width: 180px;
+}
+
+.card-post--1 .card-post__author,
+.card-post--1 .card-post__category {
+  position: absolute;
+}
+
+.card-post--1 .card-post__author {
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+  margin-left: 1.5625rem;
+  position: absolute;
+  bottom: 0;
+}
+
+.card-post--1 .card-post__category {
+  top: 0.9375rem;
+  right: 0.9375rem;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+.card-post--1 .card-body {
+  padding-top: 2.1875rem;
+}
+
+.card-post--1.card-post--aside .card-body {
+  padding: 1.5625rem 1.5625rem;
+}
+
+.card-post--1.card-post--aside .card-post__author {
+  left: 0.9375rem;
+  bottom: 0.9375rem;
+  -webkit-transform: none;
+  transform: none;
+  margin: 0;
+}
+
+.card-post--1.card-post--aside .card-post__category {
+  right: initial;
+  top: 0.9375rem;
+  left: 0.9375rem;
+}
+
+.text-muted {
+  color: #868e96;
+  font-weight: bold;
+}
+
+.text-fiord-blue {
+  font-weight: bold;
+}
+
+a.text-fiord-blue:focus,
+a.text-fiord-blue:hover {
+  color: #2b394f;
+  text-decoration-line: none;
+}
+
+/* Recent Posts Cards*/
