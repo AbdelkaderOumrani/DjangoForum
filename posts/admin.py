@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Post, Comment
+from .models import Category, Post, Comment, Attachment
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -16,5 +16,11 @@ class PostAdmin(admin.ModelAdmin):
     sortable_by = ('created', 'updated', 'title', 'category')
 
 
+class AttachmentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'post',)
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
+admin.site.register(Attachment, AttachmentAdmin)
+#admin.site.register(Comment, CommentAdmin)

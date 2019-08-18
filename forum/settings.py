@@ -33,8 +33,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'accounts',
-    'posts.apps.PostsConfig',
-    'pages.apps.PagesConfig',
+    'posts',
+    'pages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-AUTH_PROFILE_MODULE='accounts.UserProfile'
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 
 # Internationalization
@@ -134,9 +134,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'forum/static')
 ]
-#photo
-MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
-MEDIA_URL='/media/'
+# photo
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Messages
@@ -144,4 +144,3 @@ MESSAGE_TAGS = {
     messages.ERROR: 'warning',
     messages.SUCCESS: 'success',
 }
-

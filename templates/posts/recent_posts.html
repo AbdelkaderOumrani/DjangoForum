@@ -27,14 +27,16 @@
                 style="background-image: url('{{ post.cover.url }}');"
               >
                 <a
-                  href="#"
+                  href="{% url 'posts_by_category' post.category.slug %}"
                   class="card-post__category badge badge-pill badge-{{post.category.color}}"
-                  >{{ post.category }}</a>
+                  >{{ post.category }}</a
+                >
                 <div class="card-post__author d-flex">
                   <a
                     href="#"
                     class="card-post__author-avatar card-post__author-avatar--small"
-                    style="background-image: url('{{post.author.profile.avatar.url}}');"></a>
+                    style="background-image: url('{{ post.author.profile.avatar.url }}');"
+                  ></a>
                 </div>
               </div>
               <div class="card-body">
@@ -46,7 +48,8 @@
                 </p>
                 <span class="text-muted"
                   >{{ post.created | naturalday }} BY</span
-                > <span class="text-muted">{{post.author.get_full_name}}</span>
+                >
+                <span class="text-muted">{{ post.author.get_full_name }}</span>
               </div>
             </div>
           </div>

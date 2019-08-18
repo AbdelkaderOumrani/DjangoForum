@@ -17,10 +17,10 @@
 
       <div class="container-fluid">
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">All Posts</h1>
+        <h1 class="h3 mb-4 text-gray-800">Posts in {{category.title}}</h1>
         <div class="row">
           {% for post in posts %}
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+          <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
             <div class="card card-small card-post card-post--1">
               <div
                 class="card-post__image"
@@ -28,9 +28,7 @@
               >
                 <a
                   href="#"
-                  class="card-post__category badge badge-pill badge-{{
-                    post.category.color
-                  }}"
+                  class="card-post__category badge badge-pill badge-{{post.category.color}}"
                   >{{ post.category }}</a
                 >
                 <div class="card-post__author d-flex">
@@ -40,8 +38,7 @@
                     style="background-image: url('{{
                       post.author.profile.avatar.url
                     }}');"
-                    >Written by Anna Kunis</a
-                  >
+                  ></a>
                 </div>
               </div>
               <div class="card-body">
@@ -49,9 +46,12 @@
                   <a class="text-fiord-blue" href="#">{{ post.title }}</a>
                 </h5>
                 <p class="card-text d-inline-block mb-3">
-                  {{ post.body | truncatechars: 150 }}
+                  {{ post.body | truncatechars:150 }}
                 </p>
-                <span class="text-muted">{{ post.created | naturalday }}</span>
+                <span class="text-muted"
+                  >{{ post.created | naturalday }} BY</span
+                >
+                <span class="text-muted">{{ post.author.get_full_name }}</span>
               </div>
             </div>
           </div>

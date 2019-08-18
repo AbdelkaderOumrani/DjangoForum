@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 # Category Class
 
@@ -57,6 +59,16 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Attachment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    attachment = models.FileField(upload_to='attachments', blank=False)
+
+
+@receiver(post_delete, sender=Attachment)
+def submission_delete(sender, instance, **kwargs):
+    instance.attachment.delete(False)
 
 
 class Comment(models.Model):

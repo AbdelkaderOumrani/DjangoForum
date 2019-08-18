@@ -18,139 +18,131 @@
       <div class="container-fluid">
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Add New Post</h1>
-        <div class="row">
+{% include 'partials/_alerts.html' %}
+<form id="new_post_form" method="POST" action="#">
+                <div class="row">
           <div class="col-lg-9 col-md-12">
-                <!-- Add New Post Form -->
-                <div class="card card-small mb-3">
-                  <div class="card-body">
-                    <form
-                    method= "POST"
-                    action="{% url 'new_post' %}">
-                    {% csrf_token %}
-                      <input class="form-control form-control-lg mb-3" type="text" 
-                      placeholder="Your Post Title">
-                      <!-- Create the editor container -->
-                      <div id="editor">
-                        <p>Hello World!</p>
-                          <p>Some initial <strong>bold</strong> text</p>
-                            <p><br></p>
-                      </div>    
-                      </form>
-                  </div>
-                </div>
-                <!-- / Add New Post Form -->
-              </div>
+            <!-- Add New Post Form -->
+            <div class="card card-small mb-3">
+              <div class="card-body">
+                  {% csrf_token %}
+                  <input
+                    class="form-control form-control-lg mb-3"
+                    type="text"
+                    name="post_title"
+                    placeholder="Your Post Title"
+                  /> 
+                  <textarea
+                    class="form-control form-control-sm mb-3"
 
-              <div class="col-lg-3 col-md-12">
-                <!-- Post Overview -->
-                <div class="card card-small mb-3">
-                  <div class="card-header border-bottom">
-                    <h6 class="m-0">Actions</h6>
+                    name="post_subtitle"
+                    placeholder="Your Post Subtitle"
+                  >
+                  </textarea>
+                  <!-- Create the editor container -->
+                  <div id="editor" name="post_body">
+                    <p>Hello World!</p>
+                    <p>Some initial <strong>bold</strong> text</p>
+                    <p><br /></p>
                   </div>
-                  <div class="card-body p-0">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item p-3">
-                        <span class="d-flex mb-2">
-                          <i class="material-icons mr-1">flag</i>
-                          <strong class="mr-1">Status:</strong> Draft
-                          <a class="ml-auto" href="#">Edit</a>
-                        </span>
-                        <span class="d-flex mb-2">
-                          <i class="material-icons mr-1">visibility</i>
-                          <strong class="mr-1">Visibility:</strong>
-                          <strong class="text-success">Public</strong>
-                          <a class="ml-auto" href="#">Edit</a>
-                        </span>
-                        <span class="d-flex mb-2">
-                          <i class="material-icons mr-1">calendar_today</i>
-                          <strong class="mr-1">Schedule:</strong> Now
-                          <a class="ml-auto" href="#">Edit</a>
-                        </span>
-                        <span class="d-flex">
-                          <i class="material-icons mr-1">score</i>
-                          <strong class="mr-1">Readability:</strong>
-                          <strong class="text-warning">Ok</strong>
-                        </span>
-                      </li>
-                      <li class="list-group-item d-flex px-3">
-                        <button class="btn btn-sm btn-outline-accent">
-                          <i class="material-icons">save</i> Save Draft</button>
-                        <button class="btn btn-sm btn-accent ml-auto">
-                          <i class="material-icons">file_copy</i> Publish</button>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- / Post Overview -->
-                <!-- Post Overview -->
-                <div class="card card-small mb-3">
-                  <div class="card-header border-bottom">
-                    <h6 class="m-0">Categories</h6>
-                  </div>
-                  <div class="card-body p-0">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item px-3 pb-2">
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category1" checked="">
-                          <label class="custom-control-label" for="category1">Uncategorized</label>
-                        </div>
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category2" checked="">
-                          <label class="custom-control-label" for="category2">Design</label>
-                        </div>
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category3">
-                          <label class="custom-control-label" for="category3">Development</label>
-                        </div>
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category4">
-                          <label class="custom-control-label" for="category4">Writing</label>
-                        </div>
-                        <div class="custom-control custom-checkbox mb-1">
-                          <input type="checkbox" class="custom-control-input" id="category5">
-                          <label class="custom-control-label" for="category5">Books</label>
-                        </div>
-                      </li>
-                      <li class="list-group-item d-flex px-3">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="New category" aria-label="Add new category" aria-describedby="basic-addon2">
-                          <div class="input-group-append">
-                            <button class="btn btn-white px-2" type="button">
-                              <i class="material-icons">add</i>
-                            </button>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- / Post Overview -->
-              </div>
-          
-          
-          
-          <!--Files Upload-->
-          <div class="col-lg-4 col-md-12">
-            <div class="row">
-              <div class="control-group" id="fields">
-                <div class="controls">
-                  <div class="entry input-group col-xs-3">
-                    <input
-                      class="btn btn-primary"
-                      name="fields[]"
-                      type="file"
-                    />
-                    <span class="input-group-btn">
-                      <button class="btn btn-success btn-add" type="button">
-                        <span class="fas fa-plus"></span>
-                      </button>
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
+            <!-- / Add New Post Form -->
+          </div>
+          <input id="post_body" type="hidden" name="post_body" value="">
+
+          <div class="col-lg-3 col-md-12">
+            <!-- cover upload -->
+            <div class="card card-small mb-3">
+              <div class="card-header border-bottom">
+                <h6 class="m-0">Upload post cover</h6>
+              </div>
+              <div class="card-body p-0 text-center">
+                <div class="preview">
+                  <img id="blah" src="https://sumeyyaarar.com/wp-content/uploads/2018/07/empty_baslik.png" alt="" class="img-thumbnail border-0" />
+                </div>
+                
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn-file mb-15 ">
+                    <span class="text">Add</span>
+                    <input name="post_cover" type="file" accept=".png,.jpg" onchange="readURL(this);" />
+                  </a>
+
+              </div>
+            </div>
+            <style>
+              .btn-file {
+                position: relative;
+                overflow: hidden;
+              }
+              .btn-file input[type="file"] {
+                position: absolute;
+                top: 0;
+                right: 0;
+                min-width: 100%;
+                min-height: 100%;
+                font-size: 100px;
+                text-align: right;
+                filter: alpha(opacity=0);
+                opacity: 0;
+                outline: none;
+                background: white;
+                cursor: inherit;
+                display: block;
+              }
+            </style>
+            
+            <!-- / cover upload -->
+            <!-- Post Overview -->
+            <div class="card card-small mb-3">
+              <div class="card-header border-bottom">
+                <h6 class="m-0">Actions</h6>
+              </div>
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item p-3">
+                    <span class="d-flex mb-2">
+                      <!--<i class="material-icons mr-1">flag</i>-->
+                      <strong class="mr-1">Status:</strong> Draft
+                      <a class="ml-auto" href="#">e</a>
+                    </span>
+                    <span class="d-flex mb-2">
+                      <!--<i class="material-icons mr-1">visibility</i>-->
+                      <strong class="mr-1">Visibility:</strong>
+                      <strong class="text-success">Public</strong>
+                      <a class="ml-auto" href="#">e</a>
+                    </span>
+                    <span class="d-flex mb-2">
+                      <!--<i class="material-icons mr-1">calendar_today</i>-->
+                      <strong class="mr-1">Category:</strong> Now
+                      <a class="ml-auto"
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#categoriesModal" href="#">
+                      <i class="fas fa-edit fa-sm fa-fw "></i>
+                      </a>
+                    </span>
+                    <span class="d-flex">
+                      <!--<i class="material-icons mr-1">score</i>-->
+                      <strong class="mr-1">Readability:</strong>
+                      <strong class="text-warning">Ok</strong>
+                    </span>
+                  </li>
+                  <li class="list-group-item d-flex px-3">
+                    <button class="btn btn-sm btn-outline-primary">
+                      <!--<i class="material-icons">save</i>-->
+                      Save Draft
+                    </button>
+                    <input type="submit" class="btn btn-sm btn-primary ml-auto">
+                      <!--<i class="material-icons">file_copy</i>-->
+                    
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- / Post Overview -->
           </div>
         </div>
+        </form>
         <!-- Content Row -->
       </div>
 
