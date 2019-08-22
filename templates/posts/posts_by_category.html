@@ -17,14 +17,14 @@
 
       <div class="container-fluid">
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Posts in {{category.title}}</h1>
+        <h1 class="h3 mb-4 text-gray-800">Posts in {{ category.title }}</h1>
         <div class="row">
           {% for post in posts %}
           <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
             <div class="card card-small card-post card-post--1">
               <div
                 class="card-post__image"
-                style="background-image: url('{{ post.cover.url }}');"
+                style="background-image: url('{{ post.image.url }}');"
               >
                 <a
                   href="#"

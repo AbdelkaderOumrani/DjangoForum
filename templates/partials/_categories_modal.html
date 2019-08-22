@@ -20,8 +20,10 @@
         </button>
       </div>
       <div class="modal-body">
-        {% for category in categories  %}
-        <button class="btn btn-outline-{{category.color}}">{{category.title}}</button>
+        {% for category in categories %}
+        <input id="cat_{{category.id}}" class="category-element btn btn-outline-{{ category.color }}" 
+        type="button" value="{{category.title}}">
+
         {% endfor %}
       </div>
     </div>

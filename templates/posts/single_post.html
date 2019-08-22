@@ -1,0 +1,84 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <!-- Sidebar -->
+  {% include 'partials/_sidebar.html' %}
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      {% include 'partials/_navbar.html' %}
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+        <div class="col-xl-10 mb-4">
+          <div class="card border-left-primary shadow  py-2">
+            <div class="card-body">
+              <div class="col">
+                <!-- Title -->
+                <h1 class="mt-4">{{ post.title }}</h1>
+
+                <!-- Author -->
+                <p class="lead">
+                  by
+                  <a href="#">{{ post.author }}</a>
+                </p>
+
+                <hr />
+
+                <!-- Date/Time -->
+                <p>Posted on {{ post.created }}</p>
+
+                <hr />
+
+                <hr />
+
+                <!-- Post Content -->
+                <div id="post_content">
+                  {{ post.body | safe }}
+                </div>
+                <div>
+                  {% for attachment in attachments %}
+                  <p>-----------------------------</p>
+                  <p></p>
+                  <a href="{{ attachment.attachment.url }}">{{attachment.attachment}}</a>
+                  {% endfor %}
+                </div>
+
+                <script>
+                  $("#post_content img").addClass("img-thumbnail");
+                </script>
+
+                <hr />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    {% include 'partials/_footer.html' %}
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Categories Modal-->
+{% include 'partials/_categories_modal.html'%} {% endblock %}

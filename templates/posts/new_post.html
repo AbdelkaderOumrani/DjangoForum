@@ -18,130 +18,115 @@
       <div class="container-fluid">
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Add New Post</h1>
-{% include 'partials/_alerts.html' %}
-<form id="new_post_form" method="POST" action="#">
-                <div class="row">
-          <div class="col-lg-9 col-md-12">
-            <!-- Add New Post Form -->
-            <div class="card card-small mb-3">
-              <div class="card-body">
+
+        <form
+          id="new_post_form"
+          method="POST"
+          action="#"
+          enctype="multipart/form-data"
+        >
+          <div class="row">
+            <div class="col-lg-9 col-md-12">
+              {% include 'partials/_alerts.html' %}
+              <!-- Add New Post Form -->
+              <div class="card card-small mb-3">
+                <div class="card-body">
                   {% csrf_token %}
                   <input
                     class="form-control form-control-lg mb-3"
-                    type="text"
+                    id="post_title"
                     name="post_title"
+                    value="{{ values.post_title }}"
+                    type="text"
                     placeholder="Your Post Title"
-                  /> 
+                    maxlength="150"
+                  />
+
                   <textarea
-                    class="form-control form-control-sm mb-3"
-
-                    name="post_subtitle"
-                    placeholder="Your Post Subtitle"
+                    name="post_description"
+                    class="form-control form-control-md mb-3"
+                    rows="2"
+                    placeholder="Your Post Description"
+                    maxlength="250"
+                    >{{ values.post_description }}</textarea
                   >
-                  </textarea>
-                  <!-- Create the editor container -->
-                  <div id="editor" name="post_body">
-                    <p>Hello World!</p>
-                    <p>Some initial <strong>bold</strong> text</p>
-                    <p><br /></p>
+
+                  <div class="input-group mb-3">
+                    <input
+                      id="post_category_name"
+                      name="post_category_name"
+                      value="{{ values.post_category_name }}"
+                      type="text"
+                      class="form-control"
+                      placeholder="Choose a category"
+                      readonly
+                    />
+
+                    <div class="input-group-append">
+                      <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#categoriesModal"
+                        href="#"
+                        class="btn btn-outline-danger"
+                        ><i class="fas fa-edit fa-sm fa-fw "></i
+                      ></a>
+                    </div>
                   </div>
-              </div>
-            </div>
-            <!-- / Add New Post Form -->
-          </div>
-          <input id="post_body" type="hidden" name="post_body" value="">
 
-          <div class="col-lg-3 col-md-12">
-            <!-- cover upload -->
-            <div class="card card-small mb-3">
-              <div class="card-header border-bottom">
-                <h6 class="m-0">Upload post cover</h6>
-              </div>
-              <div class="card-body p-0 text-center">
-                <div class="preview">
-                  <img id="blah" src="https://sumeyyaarar.com/wp-content/uploads/2018/07/empty_baslik.png" alt="" class="img-thumbnail border-0" />
+                  <!-- Create the editor container -->
+                  <div id="summernote"></div>
                 </div>
-                
-                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn-file mb-15 ">
-                    <span class="text">Add</span>
-                    <input name="post_cover" type="file" accept=".png,.jpg" onchange="readURL(this);" />
-                  </a>
-
               </div>
+              <!-- / Add New Post Form -->
             </div>
-            <style>
-              .btn-file {
-                position: relative;
-                overflow: hidden;
-              }
-              .btn-file input[type="file"] {
-                position: absolute;
-                top: 0;
-                right: 0;
-                min-width: 100%;
-                min-height: 100%;
-                font-size: 100px;
-                text-align: right;
-                filter: alpha(opacity=0);
-                opacity: 0;
-                outline: none;
-                background: white;
-                cursor: inherit;
-                display: block;
-              }
-            </style>
-            
-            <!-- / cover upload -->
-            <!-- Post Overview -->
-            <div class="card card-small mb-3">
-              <div class="card-header border-bottom">
-                <h6 class="m-0">Actions</h6>
+            <div class="col-lg-9">
+              <!-- Post Overview -->
+              <div class="card card-small mb-3">
+                <div class="card-header border-bottom">
+                  <h6 class="m-0">Upload your attachment</h6>
+                </div>
+                <div class="card-body p-0">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-3">
+                      <div class="custom-file mt-3 mb-3">
+                        <input
+                          type="file"
+                          class="custom-file-input"
+                          id="attach_file"
+                          name="attach_file"
+                          accept=".doc,.docx,.pdf,.png,.jpg,.txt"
+                        />
+                        <label class="custom-file-label" for="customFile"
+                          >Choose file</label
+                        >
+                      </div>
+                    </li>
+                    <li class="list-group-item d-flex px-3">
+                      <input
+                        type="submit"
+                        class="btn btn-md btn-primary ml-auto"
+                      />
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div class="card-body p-0">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item p-3">
-                    <span class="d-flex mb-2">
-                      <!--<i class="material-icons mr-1">flag</i>-->
-                      <strong class="mr-1">Status:</strong> Draft
-                      <a class="ml-auto" href="#">e</a>
-                    </span>
-                    <span class="d-flex mb-2">
-                      <!--<i class="material-icons mr-1">visibility</i>-->
-                      <strong class="mr-1">Visibility:</strong>
-                      <strong class="text-success">Public</strong>
-                      <a class="ml-auto" href="#">e</a>
-                    </span>
-                    <span class="d-flex mb-2">
-                      <!--<i class="material-icons mr-1">calendar_today</i>-->
-                      <strong class="mr-1">Category:</strong> Now
-                      <a class="ml-auto"
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#categoriesModal" href="#">
-                      <i class="fas fa-edit fa-sm fa-fw "></i>
-                      </a>
-                    </span>
-                    <span class="d-flex">
-                      <!--<i class="material-icons mr-1">score</i>-->
-                      <strong class="mr-1">Readability:</strong>
-                      <strong class="text-warning">Ok</strong>
-                    </span>
-                  </li>
-                  <li class="list-group-item d-flex px-3">
-                    <button class="btn btn-sm btn-outline-primary">
-                      <!--<i class="material-icons">save</i>-->
-                      Save Draft
-                    </button>
-                    <input type="submit" class="btn btn-sm btn-primary ml-auto">
-                      <!--<i class="material-icons">file_copy</i>-->
-                    
-                  </li>
-                </ul>
-              </div>
+              <!-- / Post Overview -->
             </div>
-            <!-- / Post Overview -->
           </div>
-        </div>
+
+          <input
+            id="post_body"
+            type="hidden"
+            name="post_body"
+            value="{{ values.post_body }}"
+          />
+          <input
+            id="post_category_id"
+            type="hidden"
+            name="post_category_id"
+            value="{{ values.post_category_id }}"
+          />
         </form>
         <!-- Content Row -->
       </div>

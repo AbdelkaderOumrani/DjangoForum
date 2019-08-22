@@ -55,7 +55,6 @@ def login(request):
 
     else:
         return render(request, 'accounts/login.html')
-    print(request)
 
 
 def logout(request):
@@ -67,9 +66,9 @@ def logout(request):
 
 def edit_profil(request):
     if request.user.is_authenticated:
-        return render(request, 'accounts/edit_profil.html')
+        return render(request, 'accounts/edit_profile.html')
 
 
 def show_profil(request):
     if request.user.is_authenticated:
-        return render(request, 'accounts/show_profil.html')
+        return render(request, 'accounts/show_profile.html')

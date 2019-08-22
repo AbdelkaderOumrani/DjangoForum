@@ -43,11 +43,11 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=250)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    description = models.CharField(max_length=400, default='desc')
     body = models.TextField()
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True)
-    cover = models.ImageField(upload_to='img/avatars',
-                              default='img/avatars/empty.png')
+    image = models.ImageField(upload_to='img/posts', blank=True)
     slug = models.SlugField(max_length=200,)
     status = models.BooleanField(default=False, choices=STATUS_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
@@ -59,6 +59,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+@receiver(post_delete, sender=Post)
+def photo_post_delete_handler(sender, **kwargs):
+    listingImage = kwargs['instance']
+    storage, path = listingImage.image.storage, listingImage.image.path
+    storage.delete(path)
 
 
 class Attachment(models.Model):
@@ -82,3 +89,6 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True, choices=STATUS_CHOICES)
+
+
+# class Bookmark(models.Model):
