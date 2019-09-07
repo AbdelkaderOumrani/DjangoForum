@@ -7,12 +7,9 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    <strong>
-      {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} Error : {% else %}
-      {{ message.tags | title }}
-      {% endif %}
-    </strong>
-    {{ message }}
+    <ul class="mb-0">
+      <li>{{ message }}</li>
+    </ul>
   </div>
 </div>
 {% endfor %} {% endif %}

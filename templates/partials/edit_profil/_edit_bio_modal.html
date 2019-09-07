@@ -1,0 +1,51 @@
+<div
+  class="modal fade"
+  id="editBioModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Bio :</h5>
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{%url 'change_bio'%}" method="POST">
+          {% csrf_token %}
+          <div class="col mb-3">
+            <label for="inputChangeBio">Describe Yourself : </label>
+            <textarea
+              class="form-control"
+              name="inputChangeBio"
+              id="inputChangeBio"
+              rows="10"
+              required
+            ></textarea>
+          </div>
+          <a id="bioCounter" class="text-muted float-right">0 Characters</a>
+          <ul class="text-warning">
+            <li>Maximum 200 characters.</li>
+          </ul>
+
+          <button
+            id="submitChangeBio"
+            type="submit"
+            class="btn btn-primary float-right"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

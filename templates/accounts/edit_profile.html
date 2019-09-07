@@ -16,121 +16,275 @@
       <!-- Begin Page Content -->
 
       <div class="container-fluid">
-        <!-- Page Heading -->
+          <!--Alerts-->
+          {% include 'partials/_alerts.html' %}
 
-        <!-- Content Row -->
-        <div class="row">
-            <div class="col-lg-4">
-              <div class="card card-small mb-4 pt-3">
-                <div class="card-header border-bottom text-center">
-                  <div class="mb-3 mx-auto">
-                    <img class="rounded-circle" src="{{ user.profile.avatar.url }}" alt="User Avatar" width="110"> 
-                  </div>
-                  <h4 class="mb-0">{{ user.get_full_name }}</h4>
-                  <span class="text-muted d-block mb-2">@{{user.username}}</span>
-                  <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">
-                      <i class="fas fa-fw fa-tachometer-alt"></i>Follow</button>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item px-4">
-                    <div class="progress-wrapper">
-                      <strong class="text-muted d-block mb-2">Workload</strong>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="74" 
-                        aria-valuemin="0" aria-valuemax="100" style="width: 74%;">
-                          <span class="progress-value">74%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item p-4">
-                    <strong class="text-muted d-block mb-2">Description</strong>
-                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="card card-small mb-4">
-                <div class="card-header border-bottom">
-                  <h6 class="m-0">Account Details</h6>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item p-3">
-                    <div class="row">
-                      <div class="col">
-                        <form>
-                          <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label for="feFirstName">First Name</label>
-                              <input type="text" class="form-control" id="feFirstName" placeholder="First Name" 
-                              value="{{user.first_name}}"> </div>
-                            <div class="form-group col-md-6">
-                              <label for="feLastName">Last Name</label>
-                              <input type="text" class="form-control" id="feLastName" placeholder="Last Name" 
-                              value="{{user.last_name}}"> </div>
-                          </div>
-                          <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label for="feEmailAddress">Email</label>
-                              <input type="email" class="form-control" id="feEmailAddress" placeholder="Email" 
-                              value="{{ user.email }}"> </div>
-                            <div class="form-group col-md-6">
-                              <label for="fePassword">Password</label>
-                              <input type="password" class="form-control" id="fePassword" 
-                              value="********************" disabled> </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="feInputAddress">Address</label>
-                            <input type="text" class="form-control" id="feInputAddress" placeholder="1234 Main St"> </div>
-                          <div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label for="feInputCity">City</label>
-                              <input type="text" class="form-control" id="feInputCity"> </div>
-                            <div class="form-group col-md-4">
-                              <label for="feInputState">State</label>
-                              <select id="feInputState" class="form-control">
-                                <option selected="">Choose...</option>
-                                <option>...</option>
-                              </select>
-                            </div>
-                            <div class="form-group col-md-2">
-                              <label for="inputZip">Zip</label>
-                              <input type="text" class="form-control" id="inputZip"> </div>
-                          </div>
-                          <div class="form-row">
-                            <div class="form-group col-md-12">
-                              <label for="feDescription">Description</label>
-                              <textarea class="form-control" name="feDescription" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</textarea>
-                            </div>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Update Account</button>
-                        </form>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        <!-- Content Row -->
-      </div>
-      <!-- /.container-fluid -->
+          <div class="row">
+  <div class="col-lg-3 col-md-12">
+  <div class="card shadow mb-4">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" 
+    role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-home-tab" 
+      data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Account</a>
+      <a class="nav-link" id="v-pills-profile-tab" 
+      data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile Picture</a>
+      <a class="nav-link" id="v-pills-messages-tab" 
+      data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Change Password</a>
+      <a class="nav-link" id="v-pills-settings-tab" 
+      data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Deactivate Account</a>
     </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    {% include 'partials/_footer.html' %}
-    <!-- End of Footer -->
   </div>
-  <!-- End of Content Wrapper -->
+  </div>
+  <div class="col-lg-9 col-md-12">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+      <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h4 class="m-0 font-weight-bold text-primary">
+                    Account
+                  </h4>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <!--Username Row-->
+                  <div class="form-group">
+                    <label class="h5" for="inputUsername">Username :</label>
+                    <div class="row">
+                      <input
+                        type="text"
+                        class="form-control form-control-md bg-light col-11"
+                        id="inputUsername"
+                        value="{{ user.username }}"
+                        readonly
+                      />
+                      <a
+                        class="ml-2 py-2"
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#editUsernameModal"
+                      >
+                        Edit</a
+                      >
+                    </div>
+                    <!--Full Name Row-->
+                    <div class="form-group">
+                      <label class="h5" for="inputFullName">Full Name :</label>
+                      <div class="row">
+                        <input
+                          type="text"
+                          class="form-control form-control-md bg-light col-11"
+                          
+                          value="{{ user.get_full_name }}"
+                          readonly
+                        />
+                        <a
+                          class="ml-2 py-2"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#editFullNameModal"
+                        >
+                          Edit</a
+                        >
+                      </div>
+                    </div>
+                    <!--Email Row-->
+                    <div class="form-group">
+                      <label class="h5" for="inputEmail">Email :</label>
+                      <div class="row">
+                        <input
+                          type="text"
+                          class="form-control form-control-md bg-light col-11"
+                          
+                          value="{{ user.email }}"
+                          readonly
+                        />
+                        <a
+                          class="ml-2 py-2"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#editEmailModal"
+                        >Edit</a>
+                      </div>
+                    </div>
+                    <!--Bio Row-->
+                    <div class="form-group">
+                      <label class="h5" for="inputBio">Bio :</label>
+                      <div class="row">
+                        <Textarea
+                          id="inputBio"
+                          class="form-control col-11 bg-light"
+                          rows="3"
+                          readonly
+                          >{{ user.profile.bio }}</Textarea
+                        >
+                        <a
+                          class="ml-2 py-2"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#editBioModal"
+                        >Edit</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      </div>
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+      <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h4 class="m-0 font-weight-bold text-primary">
+                    Profile Picture
+                  </h4>
+                </div>
+                <form action="{%url 'change_avatar'%}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="card-body border-bottom text-center">
+                    <div class="mb-3 mx-auto">
+                    <img id="avatar-img" class="rounded-circle" src="{{user.profile.avatar.url}}" alt="{{user}}" width="300"> 
+                          </div>
+                          <div class="upload-btn-wrapper">
+                          <button class="btn btn-primary">Upload</button>
+                          <input id="avatar-input" name="inputChangeAvatar" type="file" accept="image/png, image/jpeg" />
+                          </div>                          
+                      </div>
+                      <button type="submit" href="#" class="btn btn-google btn-block">Submit</button>
+                </form>
+                  <style>
+                  .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+                  </style>
+                  <script>
+                  function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#avatar-img').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#avatar-input").change(function(){
+    readURL(this);
+});
+                  </script>
+      </div>
+      </div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h4 class="m-0 font-weight-bold text-primary">
+                        Change Password
+                      </h4>
+                    </div>
+                    <div class="card-body border-bottom">
+                    <form action="{% url 'change_password'%}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label class="h5" for="inputOldPassword">Old Password :</label>
+                      <div class="row">
+                        <input type="password" class="form-control form-control-md bg-light col-11" 
+                        id="inputOldPassword" name="inputOldPassword">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="h5" for="inputNewPassword">New Password :</label>
+                      <div class="row">
+                        <input type="password" class="form-control form-control-md bg-light col-11" 
+                        id="inputNewPassword" name="inputNewPassword">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="h5" for="inputConfirmPassword">Confirm New Password :</label>
+                      <div class="row">
+                        <input type="password" class="form-control form-control-md bg-light col-11" 
+                        name="inputConfirmPassword" >
+                      </div>
+                    </div>
+                    <ul class="text-warning">
+                    <li>Your password can't be too similar to your other personal information.</li>
+                    <li>Your password must contain at least 8 characters.</li>
+                    <li>Your password can't be a commonly used password.</li>
+                    <li>Your password can't be entirely numeric.</li>
+                    </ul>
+                          <button type="submit" href="#" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+
+                    </div>
+
+          </div>
+      </div>
+      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+              <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h4 class="m-0 font-weight-bold text-primary">
+                        Delete Account
+                      </h4>
+                    </div>
+                    <div class="card-body border-bottom">
+                    <form id="deactivateAccount" action="{%url 'deactivate_account'%}" method="post">
+                    {% csrf_token %}
+                      <button type="submit" class="btn btn-primary btn-block">Deactivate My Account</button>
+                      <script>
+                      $('#deactivateAccount').submit(function(e) {
+                        if (confirm('Are you sure you want to deactivate your account ?')) {
+                          
+                        } 
+                        else {
+                          e.preventDefault();                          
+                        } 
+                      });
+                      </script>
+                    </form>
+
+                    </div>
+                    </div>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- End of Page Wrapper -->
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-  <i class="fas fa-angle-up"></i>
-</a>
 
-<!-- Logout Modal-->
-{% include 'partials/_logout_modal.html'%} {% endblock %}
+          
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      {% include 'partials/_footer.html' %}
+      <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!--Edit Username Modal-->
+  {% include 'partials/edit_profil/_edit_username_modal.html'%} 
+  {% include  'partials/edit_profil/_edit_fullname_modal.html'%}
+  {% include  'partials/edit_profil/_edit_email_modal.html'%}
+  {% include  'partials/edit_profil/_edit_bio_modal.html'%}
+  {% endblock %}

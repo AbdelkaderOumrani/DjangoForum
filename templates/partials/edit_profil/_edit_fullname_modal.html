@@ -1,0 +1,58 @@
+<div
+  class="modal fade"
+  id="editFullNameModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Full Name :</h5>
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'change_fullname' %}" method="POST">
+          {% csrf_token %}
+          <div class="col mb-3">
+            <label for="inputChangeFirstName">First Name : </label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputChangeFirstName"
+              name="inputChangeFirstName"
+              required
+            />
+          </div>
+
+          <div class="col mb-3">
+            <label for="inputChangeLastName">Last Name : </label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputChangeLastName"
+              name="inputChangeLastName"
+              required
+            />
+          </div>
+
+          <button
+            id="submitChangeFullName"
+            type="submit"
+            class="btn btn-primary float-right"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

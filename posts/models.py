@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from django.db.models import Count
 
 # Category Class
 
@@ -43,15 +44,14 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=250)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    description = models.CharField(max_length=400, default='desc')
     body = models.TextField()
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True)
-    image = models.ImageField(upload_to='img/posts', blank=True)
     slug = models.SlugField(max_length=200,)
     status = models.BooleanField(default=False, choices=STATUS_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    visited = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -59,13 +59,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-
-@receiver(post_delete, sender=Post)
-def photo_post_delete_handler(sender, **kwargs):
-    listingImage = kwargs['instance']
-    storage, path = listingImage.image.storage, listingImage.image.path
-    storage.delete(path)
 
 
 class Attachment(models.Model):
@@ -85,7 +78,7 @@ class Comment(models.Model):
     )
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    body = models.CharField(max_length=200)
+    body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True, choices=STATUS_CHOICES)

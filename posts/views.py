@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
-from .models import Category, Post, Attachment
+from .models import Category, Post, Attachment, Comment
+from django.contrib.auth.models import User
 from django.db.models import Count
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
@@ -8,19 +9,24 @@ from django.http import JsonResponse
 
 
 def categories(request):
-    categories = Category.objects.annotate(nb_posts=Count('post'))
-    context = {
+    categories = Category.objects.annotate(nb_comments=Count('post__comment'),nb_posts = Count('post'))
+    context={
         'categories': categories
     }
-    return render(request, 'pages/categories.html', context)
+    return render(request, 'posts/categories.html', context)
 
 
 def recent_posts(request):
-    posts = Post.objects.all().order_by('-created')
-    context = {
-        'posts': posts
-    }
-    return render(request, 'posts/recent_posts.html', context)
+    if request.user.is_authenticated:
+        posts = Post.objects.all().order_by(
+            '-created').annotate(nb_comments = Count('comment'))
+        context={
+            'posts': posts
+        }
+        return render(request, 'posts/recent_posts.html', context)
+    else:
+        messages.error(request, 'You must log in first')
+        return redirect('login')
 
 
 def new_post(request):
@@ -36,7 +42,6 @@ def new_post(request):
                 is_attached = False
             # validation
             title = request.POST['post_title']
-            desc = request.POST['post_description']
             body = request.POST['post_body']
             cat = request.POST['post_category_id']
             author = request.user
@@ -45,10 +50,6 @@ def new_post(request):
             if not(20 <= len(title) <= 200):
                 messages.error(
                     request, 'Title length must be between 20 and 200 caracters')
-                is_valid = False
-            if not(100 <= len(desc) <= 390):
-                messages.error(
-                    request, 'Description must be between 100 and 380 caracters')
                 is_valid = False
             if not(len(body) > 400):
                 messages.error(request,
@@ -81,8 +82,6 @@ def new_post(request):
                 if is_attached:
                     att = Attachment(post=post, attachment=attachment)
                     att.save()
-                    print('file primary key')
-                    print(att.pk)
                 return redirect('single_post', post_id=post.pk, post_slug=post.slug)
 
             context = {
@@ -94,9 +93,10 @@ def new_post(request):
         return redirect('login')
 
 
-def posts_by_category(request, category_slug):
-    posts = get_list_or_404(Post, category__slug=category_slug)
-    category = posts[0].category.title
+def posts_by_category(request, category_id, category_slug):
+    posts = Post.objects.all().filter(category__slug=category_slug)
+    category = Category.objects.get(pk=category_id)
+    print(category)
 
     context = {
         'category': category,
@@ -108,11 +108,26 @@ def posts_by_category(request, category_slug):
 
 def single_post(request, post_id, post_slug):
     post = get_object_or_404(Post, pk=post_id)
+    post.visited += 1
+    post.save()
+    author_nb_posts = Post.objects.filter(author=post.author).count()
     attachments = Attachment.objects.filter(post__id=post_id)
-    context = {
-        'post': post,
-        'attachments': attachments
-    }
-    print(context)
+    post_comments = Comment.objects.filter(post=post)
+    print(post_comments)
 
+    context = {
+        'author_nb_posts': author_nb_posts,
+        'post': post,
+        'attachments': attachments,
+        'post_comments': post_comments
+    }
     return render(request, 'posts/single_post.html', context)
+
+
+def add_new_comment(request, post_id):
+    if request.POST:
+        post = get_object_or_404(Post, pk=post_id)
+        comment = request.POST['inputNewComment']
+        c = Comment(post=post, body=comment,  author=request.user)
+        c.save()
+    return redirect('single_post', post_id=post.id, post_slug=post.slug)

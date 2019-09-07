@@ -20,7 +20,11 @@ class AttachmentAdmin(admin.ModelAdmin):
     list_display = ('id', 'post',)
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'post', 'author', 'body')
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Attachment, AttachmentAdmin)
-#admin.site.register(Comment, CommentAdmin)
+admin.site.register(Comment, CommentAdmin)

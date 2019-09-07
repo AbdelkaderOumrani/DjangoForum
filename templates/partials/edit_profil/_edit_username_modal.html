@@ -1,0 +1,55 @@
+<div
+  class="modal fade"
+  id="editUsernameModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Username :</h5>
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'change_username' %}" method="POST">
+          {% csrf_token %}
+          <div class="col mb-3">
+            <label for="inputChangeUsername">Enter a valid Username : </label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputChangeUsername"
+              name="inputChangeUsername"
+              required
+            />
+          </div>
+          <ul class="text-warning">
+            <li>Username must be between 8-20 characters long</li>
+            <li>Allowed characters : a-z, A-Z,. ,- ,_</li>
+            <li>Username mustn't start or end with : _, ., -</li>
+            <li></li>
+          </ul>
+
+          <button
+            id="submitChangeUsername"
+            disabled
+            type="submit"
+            class="btn btn-primary float-right"
+          >
+            Submit
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

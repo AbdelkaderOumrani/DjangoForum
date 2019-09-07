@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load humanize %} {% block content %}
 <!-- Page Wrapper -->
 <div id="wrapper">
   <!-- Sidebar -->
@@ -17,50 +17,115 @@
 
       <div class="container-fluid">
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-        <div class="col-xl-10 mb-4">
-          <div class="card border-left-primary shadow  py-2">
-            <div class="card-body">
-              <div class="col">
-                <!-- Title -->
-                <h1 class="mt-4">{{ post.title }}</h1>
+        <h3 class=" mb-4 text-gray-800">{{ post.title | title }}</h3>
 
-                <!-- Author -->
-                <p class="lead">
-                  by
-                  <a href="#">{{ post.author }}</a>
-                </p>
-
-                <hr />
-
-                <!-- Date/Time -->
-                <p>Posted on {{ post.created }}</p>
-
-                <hr />
-
-                <hr />
-
-                <!-- Post Content -->
-                <div id="post_content">
-                  {{ post.body | safe }}
+        <div class="card mb-4">
+          <div class="card-header">
+            <div class="media flex-wrap w-100 align-items-center">
+              <img
+                style="width: 40px; height: auto;"
+                src="{{ post.author.profile.avatar.url }}"
+                class="d-block ui-w-40 rounded-circle"
+                alt=""
+              />
+              <div class="media-body ml-3">
+                <a href="javascript:void(0)">{{ post.author.get_full_name }}</a>
+                <div class="text-muted small">
+                  {{ post.created | naturalday }}
+                </div>
+              </div>
+              <div class="text-muted small ml-3">
+                <div>
+                  Member since
+                  <strong>{{ post.author.date_joined | naturalday }}</strong>
                 </div>
                 <div>
-                  {% for attachment in attachments %}
-                  <p>-----------------------------</p>
-                  <p></p>
-                  <a href="{{ attachment.attachment.url }}">{{attachment.attachment}}</a>
-                  {% endfor %}
+                  <strong>{{ author_nb_posts }}</strong> posts
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            {{ post.body | safe }}
+          </div>
+          <div
+            class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3"
+          >
+            {% for attachment in attachments %}
 
-                <script>
-                  $("#post_content img").addClass("img-thumbnail");
-                </script>
+            <div class="px-4 pt-3">
+              <a href="{{ attachment.attachment.url }}" class="text-primary">
+                <span
+                  class="d-inline-flex align-items-center align-middle ml-4"
+                >
+                  <i class="fas fa-file-upload"></i>&nbsp;
+                  <span class="align-middle">Download Attachement</span>
+                </span>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+<h3 class=" mb-4 text-gray-800">Post Comments</h3>
+        {% for comment in post_comments %}
 
-                <hr />
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="media">
+              <img
+                style="width: 40px; height: auto;"
+                src="{{ comment.author.profile.avatar.url }}"
+                alt=""
+                class="d-block ui-w-40 rounded-circle"
+              />
+              <div class="media-body ml-4">
+                <div class="float-right text-muted small">
+                  {{ comment.created | timesince | title }}
+                </div>
+                <a>{{ comment.author.get_full_name }}</a>
+                <div class="text-muted small">
+                  @{{ comment.author.username }}
+                </div>
+                <div class="mt-2">
+                  {{ comment.body }}
+                </div>
               </div>
             </div>
           </div>
         </div>
+        {% endfor %}
+<hr>
+        <h3 class=" mb-4 text-gray-800">Add a comment</h3>
+
+        <form action="{%url 'add_new_comment' post.id %}" method="post">
+        {% csrf_token %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="media">
+                <div class="media-body ml-4">
+                  <div class="mt-2">
+                    <textarea
+                      class="form-control"
+                      name="inputNewComment"
+                      id=""
+                      cols="30"
+                      rows="7"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="card-footer d-flex flex-wrap justify-content-end px-0 pt-0 pb-3"
+            >
+              <div class="px-4 pt-3 ">
+                <button type="submit" class="btn btn-primary ">
+                  Reply
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
 
       <!-- /.container-fluid -->

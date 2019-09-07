@@ -1,12 +1,11 @@
 {% extends 'base.html' %} {% load static %} {% block link %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
-<script src="https://kit.fontawesome.com/ba00722aa7.js"></script>
 {% endblock %} {% block content %}
 
 <div class="container">
   <!-- Outer Row -->
   <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-lg-6 col-md-8 col-sm-12">
       <div class="card o-hidden border-0 shadow-lg my-5">
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
@@ -58,7 +57,7 @@
                 </form>
                 <hr />
                 <div class="text-center">
-                  <a class="small" href="forgot-password.html"
+                  <a class="small" href="{% url 'password_reset'%}"
                     >Forgot Password?</a
                   >
                 </div>

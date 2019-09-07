@@ -16,37 +16,64 @@
       <!-- Begin Page Content -->
 
       <div class="container-fluid">
-        <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Recent Posts</h1>
-        <div class="row">
-        
-          {% for post in posts %}
-          <div class="col-lg-4">
-                <div class="card card-small card-post mb-4">
-                  <div class="card-body">
-                    <a href="{% url 'single_post' post.id post.slug %}"><h5 class="card-title">{{post.title}}</h5></a>
-                    <p class="card-text text-muted"> {{ post.description }}</p>
-                  </div>
-                  <div class="card-footer border-top d-flex">
-                    <div class="card-post__author d-flex">
-                      <a href="#" class="card-post__author-avatar card-post__author-avatar--small" 
-                      style="background-image: url('{{post.author.profile.avatar.url}}');">Written by James Khan</a>
-                      <div class="d-flex flex-column justify-content-center ml-3">
-                        <span class="card-post__author-name">{{post.author}}</span>
-                        <small class="text-muted">{{post.created|naturalday}}</small>
-                      </div>
-                    </div>
-                    <div class="my-auto ml-auto">
-                      <a class="btn btn-sm btn-primary" href="#">
-                        <i class="far fa-bookmark mr-1"></i> Bookmark </a>
-                    </div>
-                  </div>
-                </div>
+          <div class="d-flex flex-wrap justify-content-between">
+              <div>
+                  <button type="button" class="btn btn-shadow btn-wide btn-primary">
+                      <span class="btn-icon-wrapper pr-2 opacity-7">
+                          <i class="fa fa-plus fa-w-20"></i>
+                      </span>
+                      New thread
+                  </button>
               </div>
-          {% endfor %}
-        </div>
+              <div class="col-12 col-md-3 p-0 mb-3">
+                  <input type="text" class="form-control" placeholder="Search...">
+              </div>
+          </div>
+          <div class="card mb-3">
+              <div class="card-header">
+                  <div class="row no-gutters w-100 align-items-center">
+                      <div class="col "></div>
+                      <div class="col-4 text-muted">
+                          <div class="row no-gutters align-items-center">
+                              <div class="col-4">Replies</div>
+                              <div class="col-8">Last update</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
-        <!-- /.container-fluid -->
+              {% for post in posts  %}              
+              <hr class="m-0">
+              <div class="card-body py-3">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col">
+                          <a href="{% url 'single_post' post.id post.slug %}" class="">{{post.title}}</a>
+                          <a href="{% url 'posts_by_category' post.category.id post.category.slug %}"><span class="badge badge-{{post.category.color}} align-text-bottom ml-1">{{post.category}}</span></a>
+                          <div class="text-muted small mt-1">{{post.created|naturalday}} &nbsp;·&nbsp; 
+                          <a href="javascript:void(0)" class="text-muted">{{post.author.get_full_name}}</a></div>
+                      </div>
+                      <div class="d-none d-md-block col-4">
+
+                          <div class="row no-gutters align-items-center">
+                              <div class="col-4">{{post.nb_comments}}</div>
+                              <div class="media col-8 align-items-center">
+                                  <img  src="{{post.author.profile.avatar.url}}" alt="post.author" 
+                                  class="card-post__author-avatar card-post__author-avatar--small">
+                                  <div class="media-body flex-truncate ml-2">
+                                      <div class="line-height-1 text-truncate">1 day ago</div>
+                                      <a href="javascript:void(0)" class="text-muted small text-truncate">by Leon Wilson</a>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+
+              </div>
+              {% endfor %}
+
+          </div>
+
       </div>
       <!-- End of Main Content -->
 
