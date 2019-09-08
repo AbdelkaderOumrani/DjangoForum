@@ -21,41 +21,30 @@
         <div class="row">
           {% if posts %}
           {% for post in posts %}
-          <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
-            <div class="card card-small card-post card-post--1">
-              <div
-                class="card-post__image"
-                style="background-image: url('{{ post.image.url }}');"
-              >
-                <a
-                  href="#"
-                  class="card-post__category badge badge-pill badge-{{post.category.color}}"
-                  >{{ post.category }}</a
-                >
-                <div class="card-post__author d-flex">
-                  <a
-                    href="#"
-                    class="card-post__author-avatar card-post__author-avatar--small"
-                    style="background-image: url('{{
-                      post.author.profile.avatar.url
-                    }}');"
-                  ></a>
+          <div class="col-lg-4">
+                <div class="card card-small card-post mb-4">
+                  <div class="card-body">
+                    <a href="{% url 'single_post' post.id post.slug %}" 
+                    title="{{post.title}}"
+                    class="card-title h4 font-weight-bold">{{post.title| truncatechars:25}}</a>
+                    <p class="card-text text-muted">{{ post.body | truncatechars:150 }}</p>
+                  </div>
+                  <div class="card-footer border-top d-flex">
+                    <div class="card-post__author d-flex">
+                      <a href="#" class="card-post__author-avatar card-post__author-avatar--small" 
+                      style="background-image: url('{{post.author.profile.avatar.url}}');">Written by Anna Kunis</a>
+                      <div class="d-flex flex-column justify-content-center ml-3">
+                        <span class="card-post__author-name">{{post.author.get_full_name}}</span>
+                        <small class="text-muted">{{ post.created | naturalday }}</small>
+                      </div>
+                    </div>
+                    <div class="my-auto ml-auto">
+                      <a class="btn btn-sm btn-{{post.category.color}}" href="#">
+                        {{post.category.title}} </a>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title">
-                  <a class="text-fiord-blue" href="#">{{ post.title }}</a>
-                </h5>
-                <p class="card-text d-inline-block mb-3">
-                  {{ post.body | truncatechars:150 }}
-                </p>
-                <span class="text-muted"
-                  >{{ post.created | naturalday }} BY</span
-                >
-                <span class="text-muted">{{ post.author.get_full_name }}</span>
-              </div>
-            </div>
-          </div>
           {% endfor %}
           {% endif %}
           

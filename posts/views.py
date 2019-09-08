@@ -9,11 +9,14 @@ from django.http import JsonResponse
 
 
 def categories(request):
-    categories = Category.objects.annotate(nb_comments=Count('post__comment'),nb_posts = Count('post'))
-    context={
-        'categories': categories
-    }
-    return render(request, 'posts/categories.html', context)
+    if request.user.is_authenticated:
+        categories = Category.objects.annotate(nb_comments=Count('post__comment'),nb_posts = Count('post'))
+        context={
+            'categories': categories
+            }
+        return render(request, 'posts/categories.html', context)
+    else:
+        return redirect('login')
 
 
 def recent_posts(request):
@@ -47,13 +50,13 @@ def new_post(request):
             author = request.user
             is_valid = True
 
-            if not(20 <= len(title) <= 200):
+            if not(len(title) <= 200):
                 messages.error(
                     request, 'Title length must be between 20 and 200 caracters')
                 is_valid = False
-            if not(len(body) > 400):
+            if not(len(body) > 10):
                 messages.error(request,
-                               'Post Content must be larger than 400 caracters')
+                               'Post Content must be larger than 10 caracters')
                 is_valid = False
 
             if not(cat.isdigit()):
@@ -70,15 +73,14 @@ def new_post(request):
 
             if is_attached:
                 attachment = request.FILES['attach_file']
-            if attachment.size > 5000000:
-                messages.error(request, 'Max file size is 5 Mb')
-                is_valid = False
+                if attachment.size > 5000000:
+                    messages.error(request, 'Max file size is 5 Mb')
+                    is_valid = False
 
             if is_valid:
                 post = Post(title=title, body=body,  author=author,
                             category=category)
                 post.save()
-                messages.success(request, 'Posted!!!!!!!!')
                 if is_attached:
                     att = Attachment(post=post, attachment=attachment)
                     att.save()

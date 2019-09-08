@@ -24,34 +24,62 @@ from django.core.mail import EmailMessage
 def register(request):
     if request.user.is_authenticated:
         return redirect('recent_posts')
-    if request.method == 'POST':
+    elif request.POST:
+        isValid = True
         first_name = request.POST['first_name']
+        if not NameValidator(first_name):
+            messages.error(request,'Invalid First Name')
+            isValid = False
         last_name = request.POST['last_name']
+        if not NameValidator(last_name):
+            messages.error(request,'Invalid Last Name')
+            isValid = False
         username = request.POST['username']
+        if User.objects.filter(username=username).exists():
+            messages.error(request,'Username Already Exists')
+            isValid = False
         email = request.POST['email']
+        if not EmailValidator(email):
+            messages.error(request,'Invalid Email')
+            isValid = False
+        elif User.objects.filter(email=email).exists():
+            messages.error(request,'Email Already Exists')
+            isValid = False
         password = request.POST['password']
         password2 = request.POST['password2']
-        user = User.objects.create_user(first_name=first_name, last_name=last_name,
+        if not password==password2:
+            messages(request,'Passwords Do not match')
+            isValid = False
+        else:
+            try:
+                validators.validate_password(password)
+            except ValidationError as err:
+                for message in err.messages:
+                    messages.error(request,message)
+                    isValid = False
+        
+        if isValid:
+            user = User.objects.create_user(first_name=first_name, last_name=last_name,
                                                     username=username, 
                                                     email=email, 
                                                     password=password,
                                                     is_active=False)
-        current_site = get_current_site(request)
-        mail_subject = 'Activate your blog account.'
-        message = render_to_string('accounts/acc_active_email.html', {
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your blog account.'
+            message = render_to_string('accounts/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid':urlsafe_base64_encode(force_bytes(user.pk)).decode(),
                 'token':account_activation_token.make_token(user),
                 })
-        to_email = email
-        print(to_email)
-        email = EmailMessage(
-        mail_subject, message, to=[to_email])
-        email.send()
-
-        messages.warning(request,'Please confirm your email address to complete the registration')
-        return redirect('login')                           
+            to_email = email
+            email = EmailMessage(
+            mail_subject, message, to=[to_email])
+            email.send()
+            messages.warning(request,'Please confirm your email address to complete the registration')
+            return redirect('login')  
+        else:
+            return redirect('register')                         
 
     else:
         return render(request, 'accounts/register.html')

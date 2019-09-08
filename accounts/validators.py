@@ -2,10 +2,11 @@ import re
 
 
 def UsernameValidator(val):
-    if re.match("^(?=.{8,20}$)(?![-_.0-9])(?!.*[_.-]{2})[a-zA-Z0-9._-]+(?<![_.-])$", val):
-        return True
-    else:
-        return False
+    return True
+    # if re.match("^(?=.{3,20}$)(?![-_.0-9])(?!.*[_.-]{2})[a-zA-Z0-9._-]+(?<![_.-])$", val):
+    # return True
+    # else:
+    # return False
 
 
 def NameValidator(val):
