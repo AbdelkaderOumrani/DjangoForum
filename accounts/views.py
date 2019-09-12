@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404, get_list_or_404
 from django.contrib import messages, auth
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth import password_validation as validators
@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.models import User
 from .validators import UsernameValidator, NameValidator, EmailValidator
 from .models import Profile
+from posts.models import Comment,Post
 import os
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -132,9 +133,22 @@ def edit_profile(request):
         return render(request, 'accounts/edit_profile.html')
 
 
-def show_profile(request):
+def show_profile(request,user_id):
     if request.user.is_authenticated:
-        return render(request, 'accounts/show_profile.html')
+        found_user = get_object_or_404(User, pk=user_id)
+        user_nb_posts = Post.objects.filter(author=found_user).count()
+        user_nb_comments = Comment.objects.filter(author=found_user).count()
+        user_posts = Post.objects.filter(author=found_user)
+        context = {
+            'user_posts':user_posts,
+            'found_user':found_user,
+            'user_nb_posts' : user_nb_posts,
+            'user_nb_comments' : user_nb_comments
+        }
+
+        return render(request, 'accounts/show_profile.html',context)
+    else:
+        return redirect('login')
 
 
 def change_username(request):

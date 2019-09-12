@@ -152,4 +152,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'kadi.blaugrana@gmail.com'
-EMAIL_HOST_PASSWORD = 'adsl.ahmed.1997'
+EMAIL_HOST_PASSWORD = '*'

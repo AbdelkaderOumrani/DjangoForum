@@ -36,7 +36,7 @@
                     class="form-control form-control-lg mb-3"
                     id="post_title"
                     name="post_title"
-                    value="{{ values.post_title }}"
+                    value="{{ post.title }}"
                     type="text"
                     placeholder="Your Post Title"
                     maxlength="150"
@@ -46,7 +46,7 @@
                     <input
                       id="post_category_name"
                       name="post_category_name"
-                      value="{{ values.post_category_name }}"
+                      value="{{ post.category.title }}"
                       type="text"
                       class="form-control"
                       placeholder="Choose a category"
@@ -100,13 +100,13 @@
             id="post_body"
             type="hidden"
             name="post_body"
-            value="{{ values.post_body }}"
+            value="{{ post.body }}"
           />
           <input
             id="post_category_id"
             type="hidden"
             name="post_category_id"
-            value="{{ values.post_category_id }}"
+            value="{{ post.category.id }}"
           />
         </form>
         <!-- Content Row -->
