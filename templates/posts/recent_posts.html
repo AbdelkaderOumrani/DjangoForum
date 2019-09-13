@@ -48,7 +48,8 @@
                   <div class="row no-gutters align-items-center">
                       <div class="col">
                           <a href="{% url 'single_post' post.id post.slug %}" class="">{{post.title}}</a>
-                          <a href="{% url 'posts_by_category' post.category.id post.category.slug %}"><span class="badge badge-{{post.category.color}} align-text-bottom ml-1">{{post.category}}</span></a>
+                          <a href="{% url 'posts_by_category' post.category.id post.category.slug %}">
+                              <span class="badge badge-{{post.category.color}} align-text-bottom ml-1">{{post.category}}</span></a>
                           <div class="text-muted small mt-1">{{post.created|naturalday}} &nbsp;·&nbsp; 
                           <a href="javascript:void(0)" class="text-muted">{{post.author.get_full_name}}</a></div>
                       </div>

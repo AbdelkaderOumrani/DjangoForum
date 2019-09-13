@@ -66,7 +66,7 @@ def register(request):
                                                     password=password,
                                                     is_active=False)
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'Activate your EsiForum account.'
             message = render_to_string('accounts/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
