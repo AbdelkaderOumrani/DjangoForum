@@ -5,10 +5,10 @@
   <!-- Sidebar - Brand -->
   <a
     class="sidebar-brand d-flex align-items-center justify-content-center"
-    href="{% url 'categories' %}"
+    href="{% url 'recent_posts' %}"
   >
     <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
+      <i class="fas fa-comment"></i>
     </div>
     <div class="sidebar-brand-text mx-3">EsiForum</div>
   </a>
@@ -21,7 +21,7 @@
   <!-- Nav Item - Home -->
   <li class="nav-item">
     <a class="nav-link" href="{% url 'recent_posts' %}">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <i class="fas fa-home"></i>
       <span>Home</span></a
     >
   </li>
@@ -34,27 +34,25 @@
     Community
   </div>
 
-  <!-- Nav Item - Categories-->
+  <!-- Nav Item - Category-->
   <li class="nav-item">
     <a class="nav-link" href="{% url 'categories' %}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>categories</span></a
+      <span>Categories</span></a
     >
   </li>
-  <!-- Divider -->
-
   <!-- Nav Item - Post-->
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'recent_posts' %}">
+    <a class="nav-link" href="{% url 'my_posts' %}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Posts</span></a
+      <span>My Posts</span></a
     >
   </li>
 
   <!-- Nav Item - Post-->
   <li class="nav-item">
     <a class="nav-link" href="{% url 'new_post' %}">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <i class="fas fa-plus    "></i>
       <span> New post</span></a
     >
   </li>
@@ -64,35 +62,46 @@
 
   <!-- Heading -->
   <div class="sidebar-heading">
-    Profil
+    Profile
   </div>
 
-  <!-- Nav Item - Show Profil -->
+   <!-- Nav Item - Show Profil -->
   <li class="nav-item">
     <a class="nav-link" href="{% url 'show_profile' user.id %}">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Show Profil</span></a
+      <i class="fa fa-user-circle" aria-hidden="true"></i>
+      <span>My Profile</span></a
     >
   </li>
 
   <!-- Nav Item - Edit Profil -->
   <li class="nav-item">
     <a class="nav-link" href="{% url 'edit_profile' %}">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Edit Profil</span></a
+      <i class="fas fa-user-edit    "></i>
+      <span>Edit Profile</span></a
     >
   </li>
 
   <!-- Divider -->
-  <hr class="sidebar-divider" />
-
+  <hr class="sidebar-divider mb-0" />
+    <!-- Nav Item - Show Profil -->
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'users_list' %}">
+      <i class="fas fa-users    "></i>
+      <span>Users list</span></a
+    >
   </li>
+
+
+  <!-- Divider -->
   <hr class="sidebar-divider" />
 
   <!-- Nav Item - Log Out -->
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'logout' %}">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
+    <a class="nav-link"
+    data-toggle="modal"
+          data-target="#logoutModal"
+     href="#">
+     <i class="fas fa-sign-out-alt"></i>
       <span>Log Out </span></a
     >
   </li>

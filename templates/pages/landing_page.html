@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ESI FORUM - Home Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&amp;subset=latin-ext"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link href="{% static 'landing_assets/css/main.css' %}" rel="stylesheet" />
+
+    <!-- JS -->
+    <script src="{% static 'landing_assets/js/vendor/modernizr-2.8.3.min.js' %}"></script>
+    <script src="{% static 'landing_assets/js/vendor/jquery-1.12.0.min.js' %}"></script>
+  </head>
+  <body>
+    <div class="site" id="page">
+      <a class="skip-link sr-only" href="#main">Skip to content</a>
+
+      <!-- Options headline effects: .rotate | .slide | .zoom | .push | .clip -->
+      <section class="hero-section hero-section--image clearfix clip">
+        <div class="hero-section__wrap">
+          <div class="hero-section__option">
+            <img
+              src="{% static 'landing_assets/images/index2.jpg' %}"
+              alt="Hero section image"
+            />
+          </div>
+          <!-- .hero-section__option -->
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+              {% if auth %}
+                <div class="title-01 title-01--11 text-center">
+                  <h2 class="title__heading">
+                    <strong class="hero-section__words">
+                      <span class="title__effect is-visible"
+                        >Hi,
+                      </span>
+                      <span class="title__effect">{{user.first_name}}</span>
+                      <span class="title__effect">Welcome Back to</span>
+                      <span class="title__effect">ESI FORUM</span>
+                    </strong>
+                  </h2>
+                  <div class="title__description">
+                  </div>
+
+                  <!-- Options btn color: .btn-success | .btn-info | .btn-warning | .btn-danger | .btn-primary -->
+                  <div class="title__action">
+                    <a
+                      href="{% url 'recent_posts'%}"
+                      class="btn btn-success"
+                      >Proceed to Forum</a
+                    >
+                  </div>
+                </div>
+              {% else %}
+                              <div class="title-01 title-01--11 text-center">
+                  <h2 class="title__heading">
+                    <strong class="hero-section__words">
+                      <span class="title__effect is-visible"
+                        >Welcome to
+                      </span>
+                      <span class="title__effect">ESI FORUM</span>
+                      <span class="title__effect">Login</span>
+                      <span class="title__effect">Or</span>
+                      <span class="title__effect">Register</span>
+                    </strong>
+                  </h2>
+                  <div class="title__description">
+                  </div>
+
+                  <!-- Options btn color: .btn-success | .btn-info | .btn-warning | .btn-danger | .btn-primary -->
+                  <div class="title__action">
+                    <span>
+                    <a
+                      href="{% url 'login' %}"
+                      class="btn btn-success"
+                      >Login</a
+                    >
+                    </span>
+                    <span>
+                    <a
+                      href="{% url 'register' %}"
+                      class="btn btn-success"
+                      >Register</a
+                    >
+                    </span>
+                  </div>
+                </div>             
+              {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'landing_assets/js/plugins/animate-headline.js' %}"></script>
+    <script src="{% static 'landing_assets/js/main.js' %}"></script>
+  </body>
+</html>

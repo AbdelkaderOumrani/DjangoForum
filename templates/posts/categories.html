@@ -1,4 +1,10 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block title %}
+Categories
+{% endblock title %}
+{% load mathfilters %}
+{% load humanize %}
+ {% block content %}
 <!-- Page Wrapper -->
 <div id="wrapper">
   <!-- Sidebar -->
@@ -21,12 +27,12 @@
         <div class="card mb-3">
           <div class="card-header pr-0 pl-0 ">
             <div class="row no-gutters align-items-center w-100">
-              <div class="col font-weight-bold pl-3">General</div>
+              <div class="col font-weight-bold pl-3">Categories</div>
               <div class="d-none d-md-block col-6 text-muted">
                 <div class="row no-gutters align-items-center">
-                  <div class="col-3">Threads</div>
-                  <div class="col-3">Replies</div>
-                  <div class="col-6">Last update</div>
+                  <div class="col-3">Posts</div>
+                  <div class="col-3">Views</div>
+                  <div class="col-6">Last Post</div>
                 </div>
               </div>
             </div>
@@ -49,26 +55,31 @@
 
               <div class="d-none d-md-block col-6">
                 <div class="row no-gutters align-items-center">
-                  <div class="col-3">{{ category.nb_posts }}</div>
-                  <div class="col-3">{{category.nb_comments}}</div>
+                  <div class="col-3"> {{category.nb_posts}}</div>
+                  <div class="col-3">{{category.visited}}</div>
+                  {% for post in posts %}
+                  {% if post.category == category %}                  
                   <div class="media col-6 align-items-center">
                     <img
-                      src="https://demo.dashboardpack.com/architectui-html-pro/assets/images/avatars/2.jpg"
+                      src="{{post.author.profile.avatar.url}}"
                       alt=""
                       class="card-post__author-avatar card-post__author-avatar--small"
                     />
                     <div class="media-body  ml-2">
-                      <a href="javascript:void(0)" class="d-block "
-                        >Aliquam et velit vel nisi eg...</a
+                      <a href={%url 'single_post' post.id post.slug %} class="d-block "
+                        >{{post.title}}.</a
                       >
                       <div class="text-muted small ">
-                        1d ago &nbsp;·&nbsp;
-                        <a href="javascript:void(0)" class="text-muted"
-                          >Kenneth Frazier</a
+                        {{ post.created|naturaltime }} &nbsp;·&nbsp;
+                        <a href={%url 'show_profile' post.author.id %} class="text-muted"
+                          >{{post.author.get_full_name}}</a
                         >
                       </div>
                     </div>
                   </div>
+                  {% endif %}
+                  {% endfor %}
+
                 </div>
               </div>
             </div>

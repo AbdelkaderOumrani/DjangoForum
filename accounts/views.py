@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from .validators import UsernameValidator, NameValidator, EmailValidator
 from .models import Profile
 from posts.models import Comment,Post
+from django.db.models import Q
 import os
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -36,6 +37,9 @@ def register(request):
             messages.error(request,'Invalid Last Name')
             isValid = False
         username = request.POST['username']
+        if not UsernameValidator(username):
+            messages.error(request,'invalid username pattern')
+            isValid=False
         if User.objects.filter(username=username).exists():
             messages.error(request,'Username Already Exists')
             isValid = False
@@ -110,7 +114,7 @@ def login(request):
         if user is not None:
             if user.is_active:
                 auth.login(request, user)
-                return redirect('categories')
+                return redirect('recent_posts')
             else:
                 messages.error(request, 'your account is not active')
                 return redirect('login')
@@ -124,7 +128,6 @@ def login(request):
 def logout(request):
     username = request.user.username
     django_logout(request)
-    messages.success(request, username + ', You are now logged out')
     return HttpResponseRedirect('login')
 
 
@@ -264,3 +267,28 @@ def deactivate_account(request):
         django_logout(request)
     return redirect('login')
         
+def users_list(request):
+    if request.user.is_authenticated:
+        users = User.objects.all()    
+        if request.POST:
+            find = request.POST['search_user']
+            return redirect(find_users,search_val=find)
+        context = {
+            'users':users
+        }
+        return render (request,'accounts/users_list.html',context)
+    else:
+        return redirect(login)
+
+def find_users(request,search_val):
+    if request.user.is_authenticated:
+        users = User.objects.filter(Q(username__icontains=search_val)|
+                                    Q(first_name__icontains=search_val)|
+                                    Q(last_name__icontains=search_val))
+        context = {
+                'users':users,
+                'search_val':search_val
+                }
+        return render(request,'accounts/find_users.html',context)
+    else:
+        return redirect(login)

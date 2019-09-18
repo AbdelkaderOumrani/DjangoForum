@@ -1,4 +1,8 @@
-{% extends 'base.html' %} {% load humanize %} {% block content %}
+{% extends 'base.html' %} {% load humanize %}
+{% block title %}
+My posts
+{% endblock title %}
+ {% block content %}
 <!-- Page Wrapper -->
 <div id="wrapper">
   <!-- Sidebar -->
@@ -16,7 +20,9 @@
       <!-- Begin Page Content -->
 
       <div class="container-fluid">
-      {% include 'partials/_alerts.html' %}
+      <h3 class=" mb-4 text-gray-800">
+          My Posts
+        </h3>
           <div class="d-flex flex-wrap justify-content-between">
               <div>
                   <a href="{%url 'new_post' %}" class="btn btn-shadow btn-wide btn-primary">
@@ -31,11 +37,11 @@
           <div class="card mb-3">
               <div class="card-header">
                   <div class="row no-gutters w-100 align-items-center">
-                      <div class="col "></div>
+                      <div class="col ">Posts</div>
                       <div class="col-4 text-muted">
                           <div class="row no-gutters align-items-center">
-                              <div class="col-4">Replies</div>
-                              <div class="col-8">Last update</div>
+                              <div class="col-4"></div>
+                              <div class="col-8"></div>
                           </div>
                       </div>
                   </div>

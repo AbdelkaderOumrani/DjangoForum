@@ -1,6 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block link %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
-{% endblock %} {% block content %}
+{% extends 'base.html' %} {% load static %}  {% block content %}
 
 <div class="container">
   <!-- Outer Row -->
@@ -63,8 +61,7 @@
                 </div>
                 <div class="text-center">
                   <a class="small" href="{% url 'register' %}"
-                    >Create an Account!</a
-                  >
+                    >Create an Account!</a>
                 </div>
               </div>
             </div>
@@ -75,12 +72,7 @@
   </div>
 </div>
 
-<style>
-  body {
-    background-image: url("https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/55963123_1810478952386751_755741590705668096_n.jpg?_nc_cat=110&_nc_ht=scontent-mxp1-1.xx&oh=f9ba21993a8fa033eea36e926e7ba3b4&oe=5D0D0A7F");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-</style>
+
+
 
 {% endblock %}

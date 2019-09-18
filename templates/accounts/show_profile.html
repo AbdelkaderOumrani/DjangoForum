@@ -1,4 +1,9 @@
-{% extends 'base.html' %} {% load humanize %} {% block content %}
+{% extends 'base.html' %} {% load humanize %}
+{% block title %}
+Profile : @{{found_user}}
+{% endblock title %}
+Show profile :  {{found_user}}
+ {% block content %}
 <!-- Page Wrapper -->
 <div id="wrapper">
   <!-- Sidebar -->
@@ -46,19 +51,6 @@
               </div>
             </div>
             <br />
-            {% if found_user == user  %}            
-            <center>
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <button class="btn btn-info">
-                    <a class="edit-profil" href="{% url 'edit_profile' %} "
-                      >Edit Profile</a
-                    >
-                  </button>
-                </div>
-              </div>
-            </center>
-            {% endif %}
           </div>
 
           <!-- Area Chart -->

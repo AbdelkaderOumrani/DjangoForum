@@ -1,4 +1,8 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block title %}
+Edit Post : {{post.title}}
+{% endblock title %}
+{% block content %}
 <!-- Page Wrapper -->
 <div id="wrapper">
   <!-- Sidebar -->
@@ -22,9 +26,10 @@
         <form
           id="new_post_form"
           method="POST"
-          action="#"
+          action="{% url 'edit_post' post.id %}"
           enctype="multipart/form-data"
         >
+        {% csrf_token %}
           <div class="row">
             <div class="col-lg-9 col-md-12">
               {% include 'partials/_alerts.html' %}

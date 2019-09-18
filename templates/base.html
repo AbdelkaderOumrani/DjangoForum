@@ -8,10 +8,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
 
-    <title>ESI Forum</title>
+    <title>ESI Forum - {% block title %}
+    {% endblock title %}</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -43,6 +42,7 @@
 
     <!-- Logout Modal-->
     {% include 'partials/_logout_modal.html'%}
+    
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 

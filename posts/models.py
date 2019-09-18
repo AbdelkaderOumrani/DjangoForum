@@ -26,6 +26,7 @@ class Category(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     visited = models.IntegerField(default=0)
+    rank = models.IntegerField(default=0)
     color = models.CharField(
         max_length=20, default='primary', choices=COLOR_CHOICES)
 
@@ -48,7 +49,7 @@ class Post(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True)
     slug = models.SlugField(max_length=200,)
-    status = models.BooleanField(default=False, choices=STATUS_CHOICES)
+    status = models.BooleanField(default=True, choices=STATUS_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     visited = models.IntegerField(default=0)
@@ -82,6 +83,3 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True, choices=STATUS_CHOICES)
-
-
-# class Bookmark(models.Model):

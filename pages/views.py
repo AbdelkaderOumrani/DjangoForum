@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from posts.models import Category
-from django.db.models import Count
-from django.contrib.auth.models import User
 
 
-def index(request):
-    return redirect('recent_posts')
+def landing_page(request):
+    auth = False
+    if request.user.is_authenticated:
+        auth = True
+
+    return render(request, 'pages/landing_page.html', {'auth': auth})

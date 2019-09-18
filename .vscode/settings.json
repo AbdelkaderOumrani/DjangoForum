@@ -1,5 +1,11 @@
 {
+  "files.associations": {
+    "*.html": "django-html"
+  },
   "python.pythonPath": "venv\\Scripts\\python.exe",
   "git.ignoreLimitWarning": true,
-  "python.linting.pylintArgs": ["--load-plugins=pylint_django"]
+  "python.linting.pylintArgs": ["--load-plugins=pylint_django"],
+  "editor.fontFamily": "Operator Mono Light",
+  "editor.fontWeight": "600",
+  "editor.fontSize": 13.5
 }
