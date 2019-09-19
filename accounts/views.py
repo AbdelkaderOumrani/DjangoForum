@@ -53,7 +53,7 @@ def register(request):
         password = request.POST['password']
         password2 = request.POST['password2']
         if not password==password2:
-            messages(request,'Passwords Do not match')
+            messages.error(request,'Passwords Do not match')
             isValid = False
         else:
             try:
@@ -84,7 +84,7 @@ def register(request):
             messages.warning(request,'Please confirm your email address to complete the registration')
             return redirect('login')  
         else:
-            return redirect('register')                         
+            return render(request,'accounts/register.html',{'values': request.POST})                         
 
     else:
         return render(request, 'accounts/register.html')
